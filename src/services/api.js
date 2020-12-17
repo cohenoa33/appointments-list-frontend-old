@@ -1,4 +1,4 @@
-const API_ROOT = `http://localhost:3000`;
+const API_ROOT = `http://localhost:3001`;
 
 const token = localStorage.getItem("token");
 
@@ -30,10 +30,12 @@ const reauth = () => {
   }).then((res) => res.json());
 };
 
-export default {
+let auth = {
   auth: {
     login: login,
     signup: signup,
     reauth: reauth,
   },
 };
+
+export default auth;

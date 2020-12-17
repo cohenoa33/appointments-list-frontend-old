@@ -1,8 +1,8 @@
 import React from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
-import "./App.css";
 import { connect } from "react-redux";
+import "./App.css";
 
+import { setLogin, setLogout } from "./actions";
 import api from "./services/api";
 
 import Login from "./components/Login";
@@ -10,6 +10,17 @@ import Signup from "./components/Signup";
 import Appointments from "./components/Appointments";
 
 class App extends React.Component {
+  componentDidMount() {
+    if (localStorage.token) {
+      api.auth.reauth().then((data) => {
+        if (!data.error) {
+          this.props.setLogin(data);
+        } else {
+          alert(data.error);
+        }
+      });
+    }
+  }
   handleLoginSubmit = (e, user) => {
     e.preventDefault();
     api.auth
@@ -18,7 +29,7 @@ class App extends React.Component {
         if (!json.error) {
           this.handleAuthResponse(json);
         } else {
-          alert("Wrong Username or Password");
+          alert(json.error);
         }
       })
       .catch((err) => console.log(err));
@@ -34,29 +45,19 @@ class App extends React.Component {
       }
     });
   };
-  componentDidMount() {
-    if (localStorage.token) {
-      api.auth.reauth().then((data) => {
-        if (!data.error) {
-          this.props.setLogin(data);
-        } else {
-          alert("Please Login");
-        }
-      });
-    }
-  }
 
   handleAuthResponse = (data) => {
     if (data.user) {
       localStorage.token = data.jwt;
-      console.log("Hello im In");
+      this.props.setLogin(data);
     } else {
-      alert("Something Went Wrong....");
+      alert(data);
     }
   };
 
   handleLogout = () => {
     localStorage.removeItem("token");
+    this.props.setLogout();
   };
 
   renderLogin = () => <Login handleLoginSubmit={this.handleLoginSubmit} />;
@@ -66,27 +67,32 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {this.renderLogin()}
-        {this.renderSignup()}
-        <button onClick={this.handleLogout}>Logout</button>
-
-        <Switch>
-          <Route path="/home" component={this.renderHome()} />
-        </Switch>
+        {!this.props.isUser ? (
+          <>
+            {this.renderLogin()}
+            {this.renderSignup()}
+          </>
+        ) : (
+          <>
+            <button onClick={this.handleLogout}>Logout</button>
+            {this.renderHome()}
+          </>
+        )}
       </div>
     );
   }
 }
 const mapStateToProps = (state) => {
   return {
-    // user: state.user,
+    user: state.user,
+    isUser: state.isUser,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    // setLogin: (user) => dispatch(setLogin(user)),
-    // setLogout: () => dispatch(setLogout()),
+    setLogin: (user) => dispatch(setLogin(user)),
+    setLogout: () => dispatch(setLogout()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);
