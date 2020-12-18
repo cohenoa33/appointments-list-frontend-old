@@ -1,8 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
+
 import "./App.css";
 
-import { setLogin, setLogout } from "./actions";
 import api from "./services/api";
 
 import Login from "./components/Login";
@@ -10,17 +9,36 @@ import Signup from "./components/Signup";
 import Appointments from "./components/Appointments";
 
 class App extends React.Component {
+  state = {
+    user: {},
+    jwt: "",
+    isUser: false,
+    appointments: [],
+  };
   componentDidMount() {
     if (localStorage.token) {
       api.auth.reauth().then((data) => {
         if (!data.error) {
-          this.props.setLogin(data);
+          this.setLogin(data);
         } else {
           alert(data.error);
         }
       });
     }
   }
+
+  setLogin = (data) => {
+    this.setState({
+      user: data.user.user,
+      jwt: data.user.jwt,
+      isUser: true,
+      appointments: data.user.appointments,
+    });
+  };
+  setLogout = () => {
+    this.setState({ user: {}, jwt: "", isUser: false, appointments: [] });
+  };
+
   handleLoginSubmit = (e, user) => {
     e.preventDefault();
     api.auth
@@ -49,7 +67,7 @@ class App extends React.Component {
   handleAuthResponse = (data) => {
     if (data.user) {
       localStorage.token = data.jwt;
-      this.props.setLogin(data);
+      this.setLogin(data);
     } else {
       alert(data);
     }
@@ -57,7 +75,7 @@ class App extends React.Component {
 
   handleLogout = () => {
     localStorage.removeItem("token");
-    this.props.setLogout();
+    this.setLogout();
   };
 
   renderLogin = () => <Login handleLoginSubmit={this.handleLoginSubmit} />;
@@ -67,7 +85,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {!this.props.isUser ? (
+        {!this.state.isUser ? (
           <>
             {this.renderLogin()}
             {this.renderSignup()}
@@ -82,17 +100,18 @@ class App extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    isUser: state.isUser,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setLogin: (user) => dispatch(setLogin(user)),
-    setLogout: () => dispatch(setLogout()),
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     user: state.user,
+//     isUser: state.isUser,
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     setLogin: (user) => dispatch(setLogin(user)),
+//     setLogout: () => dispatch(setLogout()),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
