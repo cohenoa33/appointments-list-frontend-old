@@ -35,6 +35,7 @@ class App extends React.Component {
       appointments: data.user.appointments,
     });
   };
+
   setLogout = () => {
     this.setState({ user: {}, jwt: "", isUser: false, appointments: [] });
   };
@@ -80,8 +81,20 @@ class App extends React.Component {
 
   renderLogin = () => <Login handleLoginSubmit={this.handleLoginSubmit} />;
   renderSignup = () => <Signup handleSignUpSubmit={this.handleSignUpSubmit} />;
-  renderHome = () => <Appointments />;
+  renderHome = () => (
+    <Appointments
+      appointments={this.state.appointments}
+      deleteAppointment={this.handleDeleteAppointment}
+      updateAppointment={this.handleUpdateAppointment}
+    />
+  );
 
+  handleDeleteAppointment = (appointmentId) => {
+    // delete app on backend, remove from state
+  };
+  handleUpdateAppointment = (appointment) => {
+    // Update app on backend, update  state
+  };
   render() {
     return (
       <div>
