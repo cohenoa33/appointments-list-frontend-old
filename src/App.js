@@ -88,13 +88,30 @@ class App extends React.Component {
       updateAppointment={this.handleUpdateAppointment}
     />
   );
-
-  handleDeleteAppointment = (appointmentId) => {
-    // delete app on backend, remove from state
+  handleAddNewAppointment = () => {};
+  handleDeleteAppointment = (id) => {
+    api.appointment.delete(id).then((data) => {
+      if (!data.error) {
+        this.updateAppointmentList(id, "delete");
+      }
+    });
   };
   handleUpdateAppointment = (appointment) => {
-    // Update app on backend, update  state
+    // api.appointment.update(appointment)
+    //if (!date.error) {
+    // this.updateAppointmentList(appointment.id, "update", appointment)
+    // }
   };
+  updateAppointmentList = (id, action, appointment) => {
+    let newList = this.state.appointments.filter((a) => a.id !== id);
+    if (action === "delete") {
+      this.setState({ appointments: newList });
+    } else {
+      newList.push(appointment);
+      this.setState({ appointments: newList });
+    }
+  };
+
   render() {
     return (
       <div>
@@ -106,6 +123,7 @@ class App extends React.Component {
         ) : (
           <>
             <button onClick={this.handleLogout}>Logout</button>
+            <button>Add New Appointment</button>
             {this.renderHome()}
           </>
         )}
