@@ -1,9 +1,6 @@
 import React from "react";
-
 import "./App.css";
-
 import api from "./services/api";
-
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Appointments from "./components/Appointments";
@@ -14,6 +11,8 @@ class App extends React.Component {
     jwt: "",
     isUser: false,
     appointments: [],
+    isUpdate: false,
+    isNew: false,
   };
   componentDidMount() {
     if (localStorage.token) {
@@ -89,6 +88,15 @@ class App extends React.Component {
     />
   );
   handleAddNewAppointment = () => {};
+
+  handleUpdateAppointment = (appointment) => {
+    this.setState({ isUpdate: true });
+    // api.appointment.update(appointment)
+    //if (!date.error) {
+    // this.updateAppointmentList(appointment.id, "update", appointment)
+    // }
+  };
+
   handleDeleteAppointment = (id) => {
     api.appointment.delete(id).then((data) => {
       if (!data.error) {
@@ -96,12 +104,7 @@ class App extends React.Component {
       }
     });
   };
-  handleUpdateAppointment = (appointment) => {
-    // api.appointment.update(appointment)
-    //if (!date.error) {
-    // this.updateAppointmentList(appointment.id, "update", appointment)
-    // }
-  };
+
   updateAppointmentList = (id, action, appointment) => {
     let newList = this.state.appointments.filter((a) => a.id !== id);
     if (action === "delete") {
@@ -131,18 +134,5 @@ class App extends React.Component {
     );
   }
 }
-// const mapStateToProps = (state) => {
-//   return {
-//     user: state.user,
-//     isUser: state.isUser,
-//   };
-// };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     setLogin: (user) => dispatch(setLogin(user)),
-//     setLogout: () => dispatch(setLogout()),
-//   };
-// };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default App;
