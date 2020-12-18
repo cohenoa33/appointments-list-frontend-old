@@ -4,6 +4,8 @@ import api from "./services/api";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Appointments from "./components/Appointments";
+import AppointmentForm from "./components/AppointmentForm";
+import { Button, Alert, Container } from "reactstrap";
 
 class App extends React.Component {
   state = {
@@ -20,7 +22,7 @@ class App extends React.Component {
         if (!data.error) {
           this.setLogin(data);
         } else {
-          alert(data.error);
+          return <Alert color="primary"> {data.error}</Alert>;
         }
       });
     }
@@ -28,8 +30,8 @@ class App extends React.Component {
 
   setLogin = (data) => {
     this.setState({
-      user: data.user.user,
-      jwt: data.user.jwt,
+      user: data.user,
+      jwt: data.jwt,
       isUser: true,
       appointments: data.user.appointments,
     });
@@ -43,11 +45,11 @@ class App extends React.Component {
     e.preventDefault();
     api.auth
       .login(user)
-      .then((json) => {
-        if (!json.error) {
-          this.handleAuthResponse(json);
+      .then((data) => {
+        if (!data.error) {
+          this.handleAuthResponse(data);
         } else {
-          alert(json.error);
+          alert(data.error);
         }
       })
       .catch((err) => console.log(err));
@@ -78,8 +80,33 @@ class App extends React.Component {
     this.setLogout();
   };
 
+  AddAppointment = (appointment) => {
+    debugger;
+    let body = {
+      appointment: appointment.appointment,
+      user_id: this.state.user.id,
+    };
+    api.appointment.add(body).then((data) => {
+      if (!data.error) {
+        this.setState({
+          ...this.state,
+          appointments: [...this.state.appointments, data],
+        });
+      } else {
+        alert(data.error);
+      }
+    });
+  };
+
   renderLogin = () => <Login handleLoginSubmit={this.handleLoginSubmit} />;
   renderSignup = () => <Signup handleSignUpSubmit={this.handleSignUpSubmit} />;
+  renderAppointmentForm = () => (
+    <AppointmentForm
+      addAppointment={this.AddAppointment}
+      buttonLabel={"Add New Appointment"}
+      className={"Modal"}
+    />
+  );
   renderHome = () => (
     <Appointments
       appointments={this.state.appointments}
@@ -87,7 +114,6 @@ class App extends React.Component {
       updateAppointment={this.handleUpdateAppointment}
     />
   );
-  handleAddNewAppointment = () => {};
 
   handleUpdateAppointment = (appointment) => {
     this.setState({ isUpdate: true });
@@ -117,7 +143,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <Container>
         {!this.state.isUser ? (
           <>
             {this.renderLogin()}
@@ -125,12 +151,12 @@ class App extends React.Component {
           </>
         ) : (
           <>
-            <button onClick={this.handleLogout}>Logout</button>
-            <button>Add New Appointment</button>
+            <Button onClick={this.handleLogout}>Logout</Button>
+            {this.renderAppointmentForm()}
             {this.renderHome()}
           </>
         )}
-      </div>
+      </Container>
     );
   }
 }

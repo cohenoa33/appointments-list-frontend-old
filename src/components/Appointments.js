@@ -1,40 +1,44 @@
 import React from "react";
 import Appointment from "./Appointment";
+import { Table } from "reactstrap";
 
-export default function Appointments() {
+export default function Appointments({
+  appointments,
+  deleteAppointment,
+  updateAppointment,
+}) {
   return (
-    <div>
-      <div>Appointments</div>
-      <table>
-        <thead>
-          <tr>
-            <th>update</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>appointment_notes</th>
-            <th>specialty</th>
-            <th>patient</th>
-            <th>symptoms</th>
-            <th>location</th>
-            <th>need_insurance</th>
-            <th>insurance_status</th>
-            <th>insurance_approval</th>
-            <th>insurance_notes</th>
-            <th>delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.appointments.map((appointment, index) => (
-            <Appointment
-              appointment={appointment}
-              index={index}
-              key={appointment.id}
-              deleteAppointment={this.props.deleteAppointment}
-              updateAppointment={this.props.updateAppointment}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <Table responsive>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th></th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Doctor</th>
+          <th>Doctor Specialty</th>
+          <th>Patient Name</th>
+          <th>appointment_notes</th>
+          <th>symptoms</th>
+          <th>location</th>
+          <th>need_insurance</th>
+          <th>insurance_status</th>
+          <th>insurance_approval</th>
+          <th>insurance_notes</th>
+          <th>delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {appointments.map((appointment, index) => (
+          <Appointment
+            appointment={appointment}
+            index={index}
+            key={appointment.id}
+            deleteAppointment={deleteAppointment}
+            updateAppointment={updateAppointment}
+          />
+        ))}
+      </tbody>
+    </Table>
   );
 }

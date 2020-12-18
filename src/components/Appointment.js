@@ -1,4 +1,6 @@
 import React from "react";
+import ModalEdit from "./ModalEdit";
+import { Button } from "reactstrap";
 
 class Appointment extends React.Component {
   state = {
@@ -19,41 +21,38 @@ class Appointment extends React.Component {
     } = this.props;
 
     return (
-      <tr key={`${index}+${appointment.id}`}>
-        {this.state.isUpdate ? (
-          <>
-            <td onClick={() => this.toggleIsUpdate()}>Save</td>
-            <td>{appointment.date}</td>
-            <td>{appointment.time}</td>
-            <td>{appointment.appointment_notes}</td>
-            <td>{appointment.specialty}</td>
-            <td>{appointment.patient}</td>
-            <td>{appointment.symptoms}</td>
-            <td>{appointment.location}</td>
-            <td>{appointment.need_insurance}</td>
-            <td>{appointment.insurance_status}</td>
-            <td>{appointment.insurance_approval}</td>
-            <td>{appointment.insurance_notes}</td>
-            <td onClick={() => deleteAppointment(appointment.id)}>delete</td>
-          </>
-        ) : (
-          <>
-            <td onClick={() => this.toggleIsUpdate()}></td>
-            <td>{appointment.date}</td>
-            <td>{appointment.time}</td>
-            <td>{appointment.appointment_notes}</td>
-            <td>{appointment.specialty}</td>
-            <td>{appointment.patient}</td>
-            <td>{appointment.symptoms}</td>
-            <td>{appointment.location}</td>
-            <td>{appointment.need_insurance}</td>
-            <td>{appointment.insurance_status}</td>
-            <td>{appointment.insurance_approval}</td>
-            <td>{appointment.insurance_notes}</td>
-            <td onClick={() => deleteAppointment(appointment.id)}>delete</td>
-          </>
-        )}
-      </tr>
+      <>
+        <tr>
+          <th>{`${index + 1}`}</th>
+          <td>
+            <ModalEdit
+              buttonLabel={"EDIT"}
+              className={"Modal"}
+              appointment={appointment}
+            />
+          </td>
+          <td>{appointment.date}</td>
+          <td>{appointment.time}</td>
+          <td>{appointment.doctor}</td>
+          <td>{appointment.specialty}</td>
+          <td>{appointment.patient}</td>
+          <td>{appointment.appointment_notes}</td>
+          <td>{appointment.symptoms}</td>
+          <td>{appointment.location}</td>
+          <td>{appointment.need_insurance}</td>
+          <td>{appointment.insurance_status}</td>
+          <td>{appointment.insurance_approval}</td>
+          <td>{appointment.insurance_notes}</td>
+          <td>
+            <Button
+              onClick={() => deleteAppointment(appointment.id)}
+              color="danger"
+            >
+              Delete
+            </Button>
+          </td>
+        </tr>
+      </>
     );
   }
 }
