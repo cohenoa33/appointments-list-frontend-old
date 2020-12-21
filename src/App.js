@@ -81,12 +81,8 @@ class App extends React.Component {
   };
 
   AddAppointment = (appointment) => {
-    debugger;
-    let body = {
-      appointment: appointment.appointment,
-      user_id: this.state.user.id,
-    };
-    api.appointment.add(body).then((data) => {
+    // debugger;
+    api.appointment.add(appointment).then((data) => {
       if (!data.error) {
         this.setState({
           ...this.state,
@@ -100,11 +96,12 @@ class App extends React.Component {
 
   renderLogin = () => <Login handleLoginSubmit={this.handleLoginSubmit} />;
   renderSignup = () => <Signup handleSignUpSubmit={this.handleSignUpSubmit} />;
-  renderAppointmentForm = () => (
+  renderAppointmentForm = (id) => (
     <AppointmentForm
       addAppointment={this.AddAppointment}
       buttonLabel={"Add New Appointment"}
       className={"Modal"}
+      user_id={id}
     />
   );
   renderHome = () => (
@@ -152,7 +149,9 @@ class App extends React.Component {
         ) : (
           <>
             <Button onClick={this.handleLogout}>Logout</Button>
-            {this.renderAppointmentForm()}
+            {this.state.isUser
+              ? this.renderAppointmentForm(this.state.user.id)
+              : null}
             {this.renderHome()}
           </>
         )}

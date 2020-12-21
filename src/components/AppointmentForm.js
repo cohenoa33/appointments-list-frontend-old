@@ -6,36 +6,58 @@ import {
   Modal,
   ModalHeader,
   Col,
+  Row,
   Form,
-  FormGroup,
+  InputGroup,
   Label,
+  FormFeedback,
+  FormText,
   Input,
 } from "reactstrap";
 
 class AppointmentForm extends React.Component {
   state = {
     modal: false,
-    time: "",
-    date: "",
-    specialty: "",
-    patient: "",
-    appointment_notes: "",
-    symptoms: "",
-    location: "",
-    need_insurance: "",
-    insurance_status: "",
-    insurance_approval: "",
-    insurance_notes: "",
+    appointment: {
+      time: "",
+      date: "",
+      specialty: "",
+      patient: "",
+      appointment_notes: "",
+      symptoms: "",
+      location: "",
+      need_insurance: "",
+      insurance_status: "",
+      insurance_approval: "",
+      insurance_notes: "",
+      user_id: "",
+    },
   };
-  toggle = () => this.setState({ modal: !this.state.modal });
+  toggle = () =>
+    this.setState({
+      modal: !this.state.modal,
+      appointment: { user_id: this.props.user_id },
+    });
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      appointment: {
+        ...this.state.appointment,
+        [e.target.name]: e.target.value,
+      },
+    });
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    let appointment = this.state;
+    let appointment = this.state.appointment;
     this.props.addAppointment(appointment);
+    this.clearState();
+  };
+
+  clearState = () => {
+    this.setState({
+      modal: false,
+    });
   };
 
   render() {
@@ -52,56 +74,27 @@ class AppointmentForm extends React.Component {
           <ModalHeader toggle={this.toggle}>New Appointment</ModalHeader>
           <ModalBody>
             <Form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-              <FormGroup row>
-                <Label for="date" sm={2}>
-                  Date
-                </Label>
-                <Col sm={10}>
-                  <Input type="date" name="date" id="date" />
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="time" sm={2}>
-                  Time
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="time"
-                    name="time"
-                    id="time"
-                    placeholder="10:00 AM"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="doctor" sm={2}>
-                  Doctor Name
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="string"
-                    name="doctor"
-                    id="doctor"
-                    placeholder="Doctor Name"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="specialty" sm={2}>
-                  Doctor Specialty
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="string"
-                    name="specialty"
-                    id="specialty"
-                    placeholder="Doctor Specialty"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup row>
+              <Row form>
+                <InputGroup row required>
+                  <Label for="date" sm={2}>
+                    Date
+                  </Label>
+                  <Col sm={10}>
+                    <Input type="date" name="date" id="date" />
+                  </Col>
+                </InputGroup>
+                <InputGroup row>
+                  <Label for="time" sm={2}>
+                    Time
+                  </Label>
+                  <Col sm={10}>
+                    <Input type="string" name="time" id="time" />
+                  </Col>
+                </InputGroup>
+              </Row>
+              <InputGroup row>
                 <Label for="patient" sm={2}>
-                  Patient Name
+                  Patient
                 </Label>
                 <Col sm={10}>
                   <Input
@@ -111,10 +104,47 @@ class AppointmentForm extends React.Component {
                     placeholder="Patient Name"
                   />
                 </Col>
-              </FormGroup>
-              <FormGroup row>
+              </InputGroup>
+              <InputGroup row>
+                <Label for="doctor" sm={2}>
+                  Doctor
+                </Label>
+                <Col sm={10}>
+                  <Input
+                    type="string"
+                    name="doctor"
+                    id="doctor"
+                    required
+                    placeholder="Doctor Name"
+                  />
+                </Col>
+              </InputGroup>
+              <InputGroup row>
+                <Label for="specialty" sm={2}>
+                  Specialty
+                </Label>
+                <Col sm={10}>
+                  <Input
+                    type="string"
+                    name="specialty"
+                    id="specialty"
+                    placeholder="Doctor Specialty"
+                  />
+                </Col>
+              </InputGroup>
+
+              <InputGroup>
+                <Label for="location">Address</Label>
+                <Input
+                  type="text"
+                  name="location"
+                  id="location"
+                  placeholder="Address"
+                />
+              </InputGroup>
+              <InputGroup row>
                 <Label for="appointment_notes" sm={2}>
-                  Appointment Notes
+                  Notes
                 </Label>
                 <Col sm={10}>
                   <Input
@@ -123,39 +153,18 @@ class AppointmentForm extends React.Component {
                     id="appointment_notes"
                   />
                 </Col>
-              </FormGroup>
-              <FormGroup row>
+              </InputGroup>
+
+              <InputGroup row>
                 <Label for="symptoms" sm={2}>
                   Symptoms
                 </Label>
                 <Col sm={10}>
                   <Input type="textarea" name="symptoms" id="symptoms" />
                 </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="insurance_notes" sm={2}>
-                  Insurance Notes
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="textarea"
-                    name="insurance_notes"
-                    id="insurance_notes"
-                  />
-                </Col>
-              </FormGroup>
+              </InputGroup>
 
-              <FormGroup>
-                <Label for="location">Location</Label>
-                <Input
-                  type="text"
-                  name="location"
-                  id="location"
-                  placeholder="Address"
-                />
-              </FormGroup>
-
-              <FormGroup row>
+              <InputGroup row>
                 <Label for="need_insurance" sm={2}>
                   Need Insurance Approval
                 </Label>
@@ -169,8 +178,9 @@ class AppointmentForm extends React.Component {
                     <option>No</option>
                   </Input>
                 </Col>
-              </FormGroup>
-              <FormGroup row>
+              </InputGroup>
+
+              <InputGroup row>
                 <Label for="insurance_approval" sm={2}>
                   Approved By Insurance?
                 </Label>
@@ -184,13 +194,24 @@ class AppointmentForm extends React.Component {
                     <option>No</option>
                   </Input>
                 </Col>
-              </FormGroup>
-
-              <FormGroup check row>
+              </InputGroup>
+              <InputGroup row>
+                <Label for="insurance_notes" sm={2}>
+                  Insurance Notes
+                </Label>
+                <Col sm={10}>
+                  <Input
+                    type="textarea"
+                    name="insurance_notes"
+                    id="insurance_notes"
+                  />
+                </Col>
+              </InputGroup>
+              <InputGroup check row>
                 <Col sm={{ size: 10, offset: 2 }}>
                   <Button onClick={this.handleSubmit}>Submit</Button>
                 </Col>
-              </FormGroup>
+              </InputGroup>
             </Form>
           </ModalBody>
         </Modal>
