@@ -12,7 +12,6 @@ export default function Appointments({
       <thead>
         <tr>
           <th>#</th>
-          <th></th>
           <th>Date</th>
           <th>Time</th>
           <th>Doctor</th>
@@ -22,7 +21,7 @@ export default function Appointments({
           <th>symptoms</th>
           <th>location</th>
           <th>need_insurance</th>
-          <th>insurance_status</th>
+          {/* <th>insurance_status</th> */}
           <th>insurance_approval</th>
           <th>insurance_notes</th>
           <th>delete</th>

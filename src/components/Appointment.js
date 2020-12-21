@@ -23,14 +23,14 @@ class Appointment extends React.Component {
     return (
       <>
         <tr>
-          <th>{`${index + 1}`}</th>
-          <td>
+          <th>
+            {`${index + 1}`}
             <ModalEdit
               buttonLabel={"EDIT"}
               className={"Modal"}
               appointment={appointment}
             />
-          </td>
+          </th>
           <td>{appointment.date}</td>
           <td>{appointment.time}</td>
           <td>{appointment.doctor}</td>
@@ -40,7 +40,7 @@ class Appointment extends React.Component {
           <td>{appointment.symptoms}</td>
           <td>{appointment.location}</td>
           <td>{appointment.need_insurance ? "Yes" : "No"}</td>
-          <td>{appointment.insurance_status}</td>
+          {/* <td>{appointment.insurance_status}</td> */}
           <td>{appointment.insurance_approval ? "Yes" : "No"}</td>
           <td>{appointment.insurance_notes}</td>
           <td>

@@ -11,6 +11,8 @@ import {
   InputGroup,
   Label,
   Input,
+  FormText,
+  FormFeedback,
 } from "reactstrap";
 
 class AppointmentForm extends React.Component {
@@ -61,7 +63,6 @@ class AppointmentForm extends React.Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    debugger;
     let appointment = this.state.appointment;
     this.props.addAppointment(appointment);
     this.clearState();
@@ -88,7 +89,7 @@ class AppointmentForm extends React.Component {
           <ModalBody>
             <Form onChange={this.handleChange} onSubmit={this.handleSubmit}>
               <Row form>
-                <InputGroup row required>
+                <InputGroup row>
                   <Label for="date" sm={2}>
                     Date
                   </Label>
@@ -100,8 +101,9 @@ class AppointmentForm extends React.Component {
                   <Label for="time" sm={2}>
                     Time
                   </Label>
+
                   <Col sm={10}>
-                    <Input type="string" name="time" id="time" />
+                    <Input type="time" name="time" id="time" required />
                   </Col>
                 </InputGroup>
               </Row>
