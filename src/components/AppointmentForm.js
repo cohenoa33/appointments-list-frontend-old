@@ -10,8 +10,6 @@ import {
   Form,
   InputGroup,
   Label,
-  FormFeedback,
-  FormText,
   Input,
 } from "reactstrap";
 
@@ -26,9 +24,9 @@ class AppointmentForm extends React.Component {
       appointment_notes: "",
       symptoms: "",
       location: "",
-      need_insurance: "",
+      need_insurance: true,
       insurance_status: "",
-      insurance_approval: "",
+      insurance_approval: true,
       insurance_notes: "",
       user_id: "",
     },
@@ -36,19 +34,34 @@ class AppointmentForm extends React.Component {
   toggle = () =>
     this.setState({
       modal: !this.state.modal,
-      appointment: { user_id: this.props.user_id },
+      appointment: { ...this.state.appointment, user_id: this.props.user_id },
     });
 
   handleChange = (e) => {
-    this.setState({
-      appointment: {
-        ...this.state.appointment,
-        [e.target.name]: e.target.value,
-      },
-    });
+    let value = e.target.value;
+    let name = e.target.name;
+    let newAppointment = this.state.appointment;
+
+    if (name === "need_insurance" || value === "insurance_approval") {
+      value === "yes" ? (value = true) : (value = false);
+      this.setState({
+        appointment: {
+          ...newAppointment,
+          [name]: value,
+        },
+      });
+    } else {
+      this.setState({
+        appointment: {
+          ...newAppointment,
+          [name]: value,
+        },
+      });
+    }
   };
   handleSubmit = (e) => {
     e.preventDefault();
+    debugger;
     let appointment = this.state.appointment;
     this.props.addAppointment(appointment);
     this.clearState();

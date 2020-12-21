@@ -39,9 +39,9 @@ class Appointment extends React.Component {
           <td>{appointment.appointment_notes}</td>
           <td>{appointment.symptoms}</td>
           <td>{appointment.location}</td>
-          <td>{appointment.need_insurance}</td>
+          <td>{appointment.need_insurance ? "Yes" : "No"}</td>
           <td>{appointment.insurance_status}</td>
-          <td>{appointment.insurance_approval}</td>
+          <td>{appointment.insurance_approval ? "Yes" : "No"}</td>
           <td>{appointment.insurance_notes}</td>
           <td>
             <Button
