@@ -18,15 +18,13 @@ export default function Appointments({
           <th>Date</th>
           <th>Time</th>
           <th>Doctor</th>
-          <th>Doctor Specialty</th>
+          <th>Address</th>
           <th>Patient Name</th>
-          <th>need_insurance</th>
-          {/* <th>insurance_status</th> */}
-          <th>insurance_approval</th>
-          <th>appointment_notes</th>
-          <th>symptoms</th>
-          <th>location</th>
-          <th>insurance_notes</th>
+          <th>Need Insurance Approval?</th>
+          <th>Approved by Insurance?</th>
+          <th>Notes</th>
+          <th>Doctor Specialty</th>
+          <th>Symptoms</th>
           <th>delete</th>
         </tr>
       </thead>

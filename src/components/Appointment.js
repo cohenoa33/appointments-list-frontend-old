@@ -23,15 +23,14 @@ function Appointment({
         </th>
         <td>{appointment.date}</td>
         <td>{appointment.time}</td>
-        <td>{appointment.patient}</td>
         <td>{appointment.doctor}</td>
         <td>{appointment.location}</td>
+        <td>{appointment.patient}</td>
         <td>{appointment.need_insurance ? "Yes" : "No"}</td>
         <td>{appointment.insurance_approval ? "Yes" : "No"}</td>
-        <td>{appointment.specialty}</td>
         <td>{appointment.appointment_notes}</td>
+        <td>{appointment.specialty}</td>
         <td>{appointment.symptoms}</td>
-        <td>{appointment.insurance_notes}</td>
         <td>
           <Button
             onClick={() => deleteAppointment(appointment.id)}

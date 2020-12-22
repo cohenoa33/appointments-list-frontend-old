@@ -34,6 +34,28 @@ const EditAppointment = ({
         <ModalBody>
           <form onSubmit={handleSubmit}>
             <label>
+              Need Insurance Approval:
+              <input
+                name="need_insurance"
+                type="checkbox"
+                checked={newAppointment.need_insurance ? true : false}
+                onChange={handleChange}
+                value={newAppointment.need_insurance}
+              />
+            </label>
+            <br />
+            <label>
+              Approved By Insurance:
+              <input
+                name="insurance_approval"
+                type="checkbox"
+                checked={newAppointment.insurance_approval ? true : false}
+                onChange={handleChange}
+                value={newAppointment.insurance_approval}
+              />
+            </label>
+            <br />
+            <label>
               Doctor:
               <input
                 type="text"
@@ -84,28 +106,6 @@ const EditAppointment = ({
               />
             </label>
             <label>
-              Need Insurance Approval:
-              <input
-                name="need_insurance"
-                type="checkbox"
-                checked={newAppointment.need_insurance ? true : false}
-                onChange={handleChange}
-                value={newAppointment.need_insurance}
-              />
-            </label>
-            <br />
-            <label>
-              Approved By Insurance:
-              <input
-                name="insurance_approval"
-                type="checkbox"
-                checked={newAppointment.insurance_approval ? true : false}
-                onChange={handleChange}
-                value={newAppointment.insurance_approval}
-              />
-            </label>
-
-            <label>
               Specialty:
               <input
                 type="text"
@@ -144,19 +144,7 @@ const EditAppointment = ({
                 }
               />
             </label>
-            <label>
-              Insurance Notes:
-              <input
-                type="textarea"
-                name="insurance_notes"
-                value={
-                  newAppointment.insurance_notes !== null
-                    ? newAppointment.insurance_notes
-                    : ""
-                }
-                onChange={handleChange}
-              />
-            </label>
+
             <br />
           </form>
         </ModalBody>

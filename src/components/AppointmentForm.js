@@ -141,14 +141,6 @@ class AppointmentForm extends React.Component {
                   onChange={this.handleChange}
                 />
               </label>
-              <label>
-                Insurance Notes:
-                <input
-                  type="textarea"
-                  name="insurance_notes"
-                  onChange={this.handleChange}
-                />
-              </label>
 
               <br />
               <input type="submit" value="Save" />
