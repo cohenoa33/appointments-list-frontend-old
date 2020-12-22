@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
-const ModalEdit = ({
+const EditAppointment = ({
   buttonLabel,
   className,
   appointment,
@@ -173,4 +173,4 @@ const ModalEdit = ({
   );
 };
 
-export default ModalEdit;
+export default EditAppointment;

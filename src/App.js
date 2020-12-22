@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import api from "./services/api";
+import { sortByDateAndTime } from "./services/helpers";
+
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Appointments from "./components/Appointments";
@@ -29,11 +31,12 @@ class App extends React.Component {
   }
 
   setLogin = (data) => {
+    let appointments = sortByDateAndTime(data.user.appointments);
     this.setState({
       user: data.user,
       jwt: data.jwt,
       isUser: true,
-      appointments: data.user.appointments,
+      appointments: appointments,
     });
   };
 

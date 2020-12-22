@@ -1,5 +1,6 @@
 import React from "react";
 import Appointment from "./Appointment";
+import { sortByDateAndTime } from "../services/helpers";
 import { Table } from "reactstrap";
 
 export default function Appointments({
@@ -7,6 +8,8 @@ export default function Appointments({
   deleteAppointment,
   updateAppointment,
 }) {
+  appointments = sortByDateAndTime(appointments);
+  console.log(appointments);
   return (
     <Table responsive>
       <thead>

@@ -1,5 +1,6 @@
 import React from "react";
-import ModalEdit from "./ModalEdit";
+import EditAppointment from "./EditAppointment";
+
 import { Button } from "reactstrap";
 
 function Appointment({
@@ -13,7 +14,7 @@ function Appointment({
       <tr>
         <th>
           {`${index + 1}`}
-          <ModalEdit
+          <EditAppointment
             buttonLabel={"EDIT"}
             className={"Modal"}
             appointment={appointment}
