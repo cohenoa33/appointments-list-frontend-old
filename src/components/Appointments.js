@@ -1,13 +1,43 @@
 import React from "react";
+import Appointment from "./Appointment";
+import { Table } from "reactstrap";
 
-class Appointments extends React.Component {
-  render() {
-    return (
-      <div>
-        <div>Appointments</div>
-      </div>
-    );
-  }
+export default function Appointments({
+  appointments,
+  deleteAppointment,
+  updateAppointment,
+}) {
+  return (
+    <Table responsive>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Doctor</th>
+          <th>Doctor Specialty</th>
+          <th>Patient Name</th>
+          <th>appointment_notes</th>
+          <th>symptoms</th>
+          <th>location</th>
+          <th>need_insurance</th>
+          {/* <th>insurance_status</th> */}
+          <th>insurance_approval</th>
+          <th>insurance_notes</th>
+          <th>delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {appointments.map((appointment, index) => (
+          <Appointment
+            appointment={appointment}
+            index={index}
+            key={appointment.id}
+            deleteAppointment={deleteAppointment}
+            updateAppointment={updateAppointment}
+          />
+        ))}
+      </tbody>
+    </Table>
+  );
 }
-
-export default Appointments;

@@ -1,35 +1,55 @@
 import React from "react";
-import { connect } from "react-redux";
 import "./App.css";
-
-import { setLogin, setLogout } from "./actions";
 import api from "./services/api";
-
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Appointments from "./components/Appointments";
+import AppointmentForm from "./components/AppointmentForm";
+import { Button, Alert, Container } from "reactstrap";
 
 class App extends React.Component {
+  state = {
+    user: {},
+    jwt: "",
+    isUser: false,
+    appointments: [],
+    isUpdate: false,
+    isNew: false,
+  };
   componentDidMount() {
     if (localStorage.token) {
       api.auth.reauth().then((data) => {
         if (!data.error) {
-          this.props.setLogin(data);
+          this.setLogin(data);
         } else {
-          alert(data.error);
+          return <Alert color="primary"> {data.error}</Alert>;
         }
       });
     }
   }
+
+  setLogin = (data) => {
+    this.setState({
+      user: data.user,
+      jwt: data.jwt,
+      isUser: true,
+      appointments: data.user.appointments,
+    });
+  };
+
+  setLogout = () => {
+    this.setState({ user: {}, jwt: "", isUser: false, appointments: [] });
+  };
+
   handleLoginSubmit = (e, user) => {
     e.preventDefault();
     api.auth
       .login(user)
-      .then((json) => {
-        if (!json.error) {
-          this.handleAuthResponse(json);
+      .then((data) => {
+        if (!data.error) {
+          this.handleAuthResponse(data);
         } else {
-          alert(json.error);
+          alert(data.error);
         }
       })
       .catch((err) => console.log(err));
@@ -49,7 +69,7 @@ class App extends React.Component {
   handleAuthResponse = (data) => {
     if (data.user) {
       localStorage.token = data.jwt;
-      this.props.setLogin(data);
+      this.setLogin(data);
     } else {
       alert(data);
     }
@@ -57,42 +77,87 @@ class App extends React.Component {
 
   handleLogout = () => {
     localStorage.removeItem("token");
-    this.props.setLogout();
+    this.setLogout();
+  };
+
+  AddAppointment = (appointment) => {
+    // debugger;
+    api.appointment.add(appointment).then((data) => {
+      if (!data.error) {
+        this.setState({
+          ...this.state,
+          appointments: [...this.state.appointments, data],
+        });
+      } else {
+        alert(data.error);
+      }
+    });
   };
 
   renderLogin = () => <Login handleLoginSubmit={this.handleLoginSubmit} />;
   renderSignup = () => <Signup handleSignUpSubmit={this.handleSignUpSubmit} />;
-  renderHome = () => <Appointments />;
+  renderAppointmentForm = (id) => (
+    <AppointmentForm
+      addAppointment={this.AddAppointment}
+      buttonLabel={"Add New Appointment"}
+      className={"Modal"}
+      user_id={id}
+    />
+  );
+  renderHome = () => (
+    <Appointments
+      appointments={this.state.appointments}
+      deleteAppointment={this.handleDeleteAppointment}
+      updateAppointment={this.handleUpdateAppointment}
+    />
+  );
+
+  handleUpdateAppointment = (appointment) => {
+    this.setState({ isUpdate: true });
+    // api.appointment.update(appointment)
+    //if (!date.error) {
+    // this.updateAppointmentList(appointment.id, "update", appointment)
+    // }
+  };
+
+  handleDeleteAppointment = (id) => {
+    api.appointment.delete(id).then((data) => {
+      if (!data.error) {
+        this.updateAppointmentList(id, "delete");
+      }
+    });
+  };
+
+  updateAppointmentList = (id, action, appointment) => {
+    let newList = this.state.appointments.filter((a) => a.id !== id);
+    if (action === "delete") {
+      this.setState({ appointments: newList });
+    } else {
+      newList.push(appointment);
+      this.setState({ appointments: newList });
+    }
+  };
 
   render() {
     return (
-      <div>
-        {!this.props.isUser ? (
+      <Container>
+        {!this.state.isUser ? (
           <>
             {this.renderLogin()}
             {this.renderSignup()}
           </>
         ) : (
           <>
-            <button onClick={this.handleLogout}>Logout</button>
+            <Button onClick={this.handleLogout}>Logout</Button>
+            {this.state.isUser
+              ? this.renderAppointmentForm(this.state.user.id)
+              : null}
             {this.renderHome()}
           </>
         )}
-      </div>
+      </Container>
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    isUser: state.isUser,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setLogin: (user) => dispatch(setLogin(user)),
-    setLogout: () => dispatch(setLogout()),
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
