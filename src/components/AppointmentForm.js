@@ -1,36 +1,13 @@
 import React from "react";
 
-import {
-  Button,
-  ModalBody,
-  Modal,
-  ModalHeader,
-  Col,
-  Row,
-  Form,
-  InputGroup,
-  Label,
-  Input,
-  FormText,
-  FormFeedback,
-} from "reactstrap";
+import { Button, ModalBody, Modal, ModalHeader } from "reactstrap";
 
 class AppointmentForm extends React.Component {
   state = {
     modal: false,
     appointment: {
-      time: "",
-      date: "",
-      specialty: "",
-      patient: "",
-      appointment_notes: "",
-      symptoms: "",
-      location: "",
       need_insurance: true,
-      insurance_status: "",
-      insurance_approval: true,
-      insurance_notes: "",
-      user_id: "",
+      insurance_approval: false,
     },
   };
   toggle = () =>
@@ -40,38 +17,25 @@ class AppointmentForm extends React.Component {
     });
 
   handleChange = (e) => {
-    let value = e.target.value;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
     let name = e.target.name;
     let newAppointment = this.state.appointment;
 
-    if (name === "need_insurance" || value === "insurance_approval") {
-      value === "yes" ? (value = true) : (value = false);
-      this.setState({
-        appointment: {
-          ...newAppointment,
-          [name]: value,
-        },
-      });
-    } else {
-      this.setState({
-        appointment: {
-          ...newAppointment,
-          [name]: value,
-        },
-      });
-    }
+    this.setState({
+      appointment: {
+        ...newAppointment,
+        [name]: value,
+      },
+    });
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
     let appointment = this.state.appointment;
     this.props.addAppointment(appointment);
-    this.clearState();
-  };
-
-  clearState = () => {
-    this.setState({
-      modal: false,
-    });
+    this.toggle();
   };
 
   render() {
@@ -87,147 +51,108 @@ class AppointmentForm extends React.Component {
         >
           <ModalHeader toggle={this.toggle}>New Appointment</ModalHeader>
           <ModalBody>
-            <Form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-              <Row form>
-                <InputGroup row>
-                  <Label for="date" sm={2}>
-                    Date
-                  </Label>
-                  <Col sm={10}>
-                    <Input type="date" name="date" id="date" />
-                  </Col>
-                </InputGroup>
-                <InputGroup row>
-                  <Label for="time" sm={2}>
-                    Time
-                  </Label>
-
-                  <Col sm={10}>
-                    <Input type="time" name="time" id="time" required />
-                  </Col>
-                </InputGroup>
-              </Row>
-              <InputGroup row>
-                <Label for="patient" sm={2}>
-                  Patient
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="string"
-                    name="patient"
-                    id="patient"
-                    placeholder="Patient Name"
-                  />
-                </Col>
-              </InputGroup>
-              <InputGroup row>
-                <Label for="doctor" sm={2}>
-                  Doctor
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="string"
-                    name="doctor"
-                    id="doctor"
-                    required
-                    placeholder="Doctor Name"
-                  />
-                </Col>
-              </InputGroup>
-              <InputGroup row>
-                <Label for="specialty" sm={2}>
-                  Specialty
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="string"
-                    name="specialty"
-                    id="specialty"
-                    placeholder="Doctor Specialty"
-                  />
-                </Col>
-              </InputGroup>
-
-              <InputGroup>
-                <Label for="location">Address</Label>
-                <Input
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                Doctor:
+                <input
+                  type="text"
+                  name="doctor"
+                  onChange={this.handleChange}
+                  required
+                />
+              </label>
+              <label>
+                Patient:
+                <input
+                  type="text"
+                  name="patient"
+                  onChange={this.handleChange}
+                  required
+                />
+              </label>
+              <label>
+                Date:
+                <input
+                  type="date"
+                  name="date"
+                  onChange={this.handleChange}
+                  required
+                />
+              </label>
+              <label>
+                Time:
+                <input
+                  type="time"
+                  name="time"
+                  onChange={this.handleChange}
+                  required
+                />
+              </label>
+              <label>
+                Address:
+                <input
                   type="text"
                   name="location"
-                  id="location"
-                  placeholder="Address"
+                  onChange={this.handleChange}
+                  required
                 />
-              </InputGroup>
-              <InputGroup row>
-                <Label for="appointment_notes" sm={2}>
-                  Notes
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="textarea"
-                    name="appointment_notes"
-                    id="appointment_notes"
-                  />
-                </Col>
-              </InputGroup>
+              </label>
+              <label>
+                Need Insurance Approval:
+                <input
+                  name="need_insurance"
+                  type="checkbox"
+                  checked={this.state.appointment.need_insurance}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <br />
+              <label>
+                Approved By Insurance:
+                <input
+                  name="insurance_approval"
+                  type="checkbox"
+                  checked={this.state.appointment.insurance_approval}
+                  onChange={this.handleChange}
+                />
+              </label>
 
-              <InputGroup row>
-                <Label for="symptoms" sm={2}>
-                  Symptoms
-                </Label>
-                <Col sm={10}>
-                  <Input type="textarea" name="symptoms" id="symptoms" />
-                </Col>
-              </InputGroup>
+              <label>
+                Specialty:
+                <input
+                  type="text"
+                  name="specialty"
+                  onChange={this.handleChange}
+                />
+              </label>
+              <label>
+                Symptoms:
+                <input
+                  type="text"
+                  name="symptoms"
+                  onChange={this.handleChange}
+                />
+              </label>
+              <label>
+                Notes:
+                <input
+                  type="textarea"
+                  name="appointment_notes"
+                  onChange={this.handleChange}
+                />
+              </label>
+              <label>
+                Insurance Notes:
+                <input
+                  type="textarea"
+                  name="insurance_notes"
+                  onChange={this.handleChange}
+                />
+              </label>
 
-              <InputGroup row>
-                <Label for="need_insurance" sm={2}>
-                  Need Insurance Approval
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="select"
-                    name="need_insurance"
-                    id="need_insurance"
-                  >
-                    <option>Yes</option>
-                    <option>No</option>
-                  </Input>
-                </Col>
-              </InputGroup>
-
-              <InputGroup row>
-                <Label for="insurance_approval" sm={2}>
-                  Approved By Insurance?
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="select"
-                    name="insurance_approval"
-                    id="insurance_approval"
-                  >
-                    <option>Yes</option>
-                    <option>No</option>
-                  </Input>
-                </Col>
-              </InputGroup>
-              <InputGroup row>
-                <Label for="insurance_notes" sm={2}>
-                  Insurance Notes
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    type="textarea"
-                    name="insurance_notes"
-                    id="insurance_notes"
-                  />
-                </Col>
-              </InputGroup>
-              <InputGroup check row>
-                <Col sm={{ size: 10, offset: 2 }}>
-                  <Button onClick={this.handleSubmit}>Submit</Button>
-                </Col>
-              </InputGroup>
-            </Form>
+              <br />
+              <input type="submit" value="Save" />
+            </form>
           </ModalBody>
         </Modal>
       </>

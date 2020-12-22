@@ -41,8 +41,7 @@ class App extends React.Component {
     this.setState({ user: {}, jwt: "", isUser: false, appointments: [] });
   };
 
-  handleLoginSubmit = (e, user) => {
-    e.preventDefault();
+  handleLoginSubmit = (user) => {
     api.auth
       .login(user)
       .then((data) => {

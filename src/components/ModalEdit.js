@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
-const ModalEdit = (props) => {
-  const { buttonLabel, className } = props;
+const ModalEdit = ({ buttonLabel, className, appointment }) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
-
+  // console.log(appointment);
   return (
     <div>
       <Button color="info" onClick={toggle}>
