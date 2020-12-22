@@ -55,8 +55,7 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   };
 
-  handleSignUpSubmit = (e, user) => {
-    e.preventDefault();
+  handleSignUpSubmit = (user) => {
     api.auth.signup(user).then((data) => {
       if (!data.error) {
         this.handleAuthResponse(data);

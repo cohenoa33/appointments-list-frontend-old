@@ -1,46 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 
-class Login extends React.Component {
-  state = {
-    email: "",
-    password: "",
-  };
+function Login({ handleLoginSubmit }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  handleChange = (e) => {
-    let value = e.target.value;
+  const handleChange = (e) => {
     if (e.target.name === "email") {
-      value = e.target.value;
+      setEmail(e.target.value);
     }
-    this.setState({ [e.target.name]: value });
+    if (e.target.name === "password") {
+      setPassword(e.target.value);
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let user = { email: email, password: password };
+    handleLoginSubmit(user);
   };
 
-  render() {
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <form onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
-            <input
-              autoComplete="on"
-              onChange={this.handleChange}
-              type="text"
-              value={this.state.email}
-              name="email"
-              placeholder="email"
-            ></input>
-            <input
-              onChange={this.handleChange}
-              type="password"
-              value={this.state.password}
-              name="password"
-              placeholder="Password"
-            ></input>
-            <br />
-            <button className="btn">Sign In</button>
-          </form>
-        </div>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            autoComplete="on"
+            onChange={handleChange}
+            type="text"
+            value={email}
+            name="email"
+            placeholder="email"
+          ></input>
+          <input
+            onChange={handleChange}
+            type="password"
+            value={password}
+            name="password"
+            placeholder="Password"
+          ></input>
+          <br />
+          <button className="btn">Sign In</button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Login;
