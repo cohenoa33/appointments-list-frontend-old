@@ -17,12 +17,12 @@ export default function Appointments({
           <th>Doctor</th>
           <th>Doctor Specialty</th>
           <th>Patient Name</th>
-          <th>appointment_notes</th>
-          <th>symptoms</th>
-          <th>location</th>
           <th>need_insurance</th>
           {/* <th>insurance_status</th> */}
           <th>insurance_approval</th>
+          <th>appointment_notes</th>
+          <th>symptoms</th>
+          <th>location</th>
           <th>insurance_notes</th>
           <th>delete</th>
         </tr>

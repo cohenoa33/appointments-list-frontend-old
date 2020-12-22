@@ -112,10 +112,12 @@ class App extends React.Component {
 
   handleUpdateAppointment = (appointment) => {
     this.setState({ isUpdate: true });
-    // api.appointment.update(appointment)
-    //if (!date.error) {
-    // this.updateAppointmentList(appointment.id, "update", appointment)
-    // }
+
+    api.appointment.update(appointment).then((data) => {
+      if (!data.error) {
+        this.updateAppointmentList(appointment.id, "update", appointment);
+      }
+    });
   };
 
   handleDeleteAppointment = (id) => {
