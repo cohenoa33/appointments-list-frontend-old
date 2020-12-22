@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import Appointment from "./Appointment";
-import { sortByDateAndTime } from "../services/helpers";
 import { Table } from "reactstrap";
+import { sortBy } from "../services/helpers";
 
 export default function Appointments({
   appointments,
   deleteAppointment,
   updateAppointment,
 }) {
-  appointments = sortByDateAndTime(appointments);
-  console.log(appointments);
+  const [sort, setSort] = useState("date");
+
   return (
     <Table responsive>
       <thead>
         <tr>
           <th>#</th>
-          <th>Date</th>
+          <th>
+            {" "}
+            <button>Date</button>{" "}
+          </th>
           <th>Time</th>
-          <th>Doctor</th>
+          <th>
+            <button onClick={() => setSort("doctor")}>Doctor</button>
+          </th>
           <th>Address</th>
           <th>Patient Name</th>
           <th>Need Insurance Approval?</th>
@@ -29,7 +34,7 @@ export default function Appointments({
         </tr>
       </thead>
       <tbody>
-        {appointments.map((appointment, index) => (
+        {sortBy(appointments, sort).map((appointment, index) => (
           <Appointment
             appointment={appointment}
             index={index}
