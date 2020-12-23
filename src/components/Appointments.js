@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Appointment from "./Appointment";
 import { Table, Button } from "reactstrap";
-import { sortBy, reverseSort } from "../services/helpers";
+import helpers from "../services/helpers";
 
 export default function Appointments({
   appointments,
@@ -9,7 +9,7 @@ export default function Appointments({
   updateAppointment,
 }) {
   const [sort, setSort] = useState("date");
-  const [isSort, setIsSort] = useState({ date: true });
+  const [isSort, setIsSort] = useState({ date: false });
 
   const sortingBy = (fieldName) => {
     setSort(fieldName);
@@ -22,8 +22,8 @@ export default function Appointments({
 
   appointments =
     isSort[`${sort}`] === false
-      ? sortBy(appointments, sort)
-      : reverseSort(appointments, sort);
+      ? helpers.sortBy(appointments, sort)
+      : helpers.reverseSort(appointments, sort);
   return (
     <Table responsive>
       <thead>

@@ -1,4 +1,4 @@
-export const sortBy = (array, name) => {
+const sortBy = (array, name) => {
   switch (name) {
     case "date": {
       return array.sort((a, b) =>
@@ -40,7 +40,7 @@ export const sortBy = (array, name) => {
   }
   return array;
 };
-export const reverseSort = (array, name) => {
+const reverseSort = (array, name) => {
   switch (name) {
     case "date": {
       return array.sort((a, b) =>
@@ -82,3 +82,10 @@ export const reverseSort = (array, name) => {
   }
   return array;
 };
+
+let helpers = {
+  sortBy: sortBy,
+  reverseSort: reverseSort,
+};
+
+export default helpers;
