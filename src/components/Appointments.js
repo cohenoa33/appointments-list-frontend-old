@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Appointment from "./Appointment";
-import { Table } from "reactstrap";
-import { sortBy } from "../services/helpers";
+import { Table, Button } from "reactstrap";
+import { sortBy, reverseSort } from "../services/helpers";
 
 export default function Appointments({
   appointments,
@@ -9,7 +9,21 @@ export default function Appointments({
   updateAppointment,
 }) {
   const [sort, setSort] = useState("date");
+  const [isSort, setIsSort] = useState({ date: true });
 
+  const sortingBy = (fieldName) => {
+    setSort(fieldName);
+    if (isSort[`${fieldName}`] === false) {
+      setIsSort({ [`${fieldName}`]: true });
+    } else {
+      setIsSort({ [`${fieldName}`]: false });
+    }
+  };
+
+  appointments =
+    isSort[`${sort}`] === false
+      ? sortBy(appointments, sort)
+      : reverseSort(appointments, sort);
   return (
     <Table responsive>
       <thead>
@@ -17,14 +31,17 @@ export default function Appointments({
           <th>#</th>
           <th>
             {" "}
-            <button>Date</button>{" "}
+            <Button onClick={() => sortingBy("date")}>Date</Button>{" "}
           </th>
           <th>Time</th>
           <th>
-            <button onClick={() => setSort("doctor")}>Doctor</button>
+            <Button onClick={() => sortingBy("doctor")}>Doctor</Button>
           </th>
           <th>Address</th>
-          <th>Patient Name</th>
+          <th>
+            {" "}
+            <Button onClick={() => sortingBy("patient")}>Patient Name</Button>
+          </th>
           <th>Need Insurance Approval?</th>
           <th>Approved by Insurance?</th>
           <th>Notes</th>
@@ -34,7 +51,7 @@ export default function Appointments({
         </tr>
       </thead>
       <tbody>
-        {sortBy(appointments, sort).map((appointment, index) => (
+        {appointments.map((appointment, index) => (
           <Appointment
             appointment={appointment}
             index={index}
