@@ -21,9 +21,10 @@ export default function Appointments({
   };
 
   appointments =
-    isSort[`${sort}`] === false
-      ? helpers.sortBy(appointments, sort)
-      : helpers.reverseSort(appointments, sort);
+    // isSort[`${sort}`] === false
+    //   ?
+    helpers.sortBy(appointments, sort, isSort[`${sort}`]);
+  // : helpers.reverseSort(appointments, sort);
   return (
     <Table responsive>
       <thead>
