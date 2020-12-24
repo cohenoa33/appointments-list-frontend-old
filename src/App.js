@@ -103,13 +103,17 @@ class App extends React.Component {
       user_id={id}
     />
   );
-  renderHome = () => (
-    <Appointments
-      appointments={this.state.appointments}
-      deleteAppointment={this.handleDeleteAppointment}
-      updateAppointment={this.handleUpdateAppointment}
-    />
-  );
+  renderHome = () => {
+    return (
+      <>
+        <Appointments
+          appointments={this.state.appointments}
+          deleteAppointment={this.handleDeleteAppointment}
+          updateAppointment={this.handleUpdateAppointment}
+        />
+      </>
+    );
+  };
 
   handleUpdateAppointment = (appointment) => {
     this.setState({ isUpdate: true });

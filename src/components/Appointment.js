@@ -1,27 +1,13 @@
 import React from "react";
 import EditAppointment from "./EditAppointment";
+import DeleteAppointment from "./DeleteAppointment";
+import moment from "moment";
 
-import { Button } from "reactstrap";
-
-function Appointment({
-  appointment,
-  index,
-  deleteAppointment,
-  updateAppointment,
-}) {
+function Appointment({ appointment, deleteAppointment, updateAppointment }) {
   return (
     <>
       <tr>
-        <th>
-          {`${index + 1}`}
-          <EditAppointment
-            buttonLabel={"EDIT"}
-            className={"Modal"}
-            appointment={appointment}
-            updateAppointment={updateAppointment}
-          />
-        </th>
-        <td>{appointment.date}</td>
+        <td>{moment(appointment.date).format("dddd, MMMM Do YYYY")}</td>
         <td>{appointment.time}</td>
         <td>{appointment.doctor}</td>
         <td>{appointment.location}</td>
@@ -32,12 +18,18 @@ function Appointment({
         <td>{appointment.specialty}</td>
         <td>{appointment.symptoms}</td>
         <td>
-          <Button
-            onClick={() => deleteAppointment(appointment.id)}
-            color="danger"
-          >
-            Delete
-          </Button>
+          <EditAppointment
+            buttonLabel={"EDIT"}
+            className={"Modal"}
+            appointment={appointment}
+            updateAppointment={updateAppointment}
+          />
+          <DeleteAppointment
+            buttonLabel={"DELETE"}
+            className={"Modal"}
+            appointment={appointment}
+            deleteAppointment={deleteAppointment}
+          />
         </td>
       </tr>
     </>

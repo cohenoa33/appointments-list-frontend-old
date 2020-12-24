@@ -49,38 +49,38 @@ export default function Appointments({
   );
 
   return (
-    <>
+    <div>
       <SortFilter sortingBy={sortingBy} setFilter={setFilter} />
       <br />
-      <Table responsive>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Doctor</th>
-            <th>Address</th>
-            <th>Patient Name</th>
-            <th>Need Insurance Approval?</th>
-            <th>Approved by Insurance?</th>
-            <th>Notes</th>
-            <th>Doctor Specialty</th>
-            <th>Symptoms</th>
-            <th>delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {appointments.map((appointment, index) => (
-            <Appointment
-              appointment={appointment}
-              index={index}
-              key={appointment.id}
-              deleteAppointment={deleteAppointment}
-              updateAppointment={updateAppointment}
-            />
-          ))}
-        </tbody>
-      </Table>
-    </>
+      <div className="table-responsive">
+        <table className="table table-hover table-sm">
+          <thead>
+            <tr className="table-info">
+              <th>Date</th>
+              <th>Time</th>
+              <th>Doctor</th>
+              <th>Address</th>
+              <th>Patient Name</th>
+              <th>Need Insurance Approval?</th>
+              <th>Approved by Insurance?</th>
+              <th>Notes</th>
+              <th>Doctor Specialty</th>
+              <th>Symptoms</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {appointments.map((appointment) => (
+              <Appointment
+                appointment={appointment}
+                key={appointment.id}
+                deleteAppointment={deleteAppointment}
+                updateAppointment={updateAppointment}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
