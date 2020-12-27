@@ -52,8 +52,8 @@ export default function Appointments({
     <div>
       <SortFilter sortingBy={sortingBy} setFilter={setFilter} />
       <br />
-      <div className="table-responsive">
-        <table className="table table-hover table-sm">
+      <div>
+        <table className=" table-hover">
           <thead>
             <tr className="table-info">
               <th>Date</th>
@@ -64,9 +64,6 @@ export default function Appointments({
               <th>Need Insurance Approval?</th>
               <th>Approved by Insurance?</th>
               <th>Notes</th>
-              <th>Doctor Specialty</th>
-              <th>Symptoms</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>

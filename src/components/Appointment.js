@@ -4,6 +4,15 @@ import DeleteAppointment from "./DeleteAppointment";
 import moment from "moment";
 
 function Appointment({ appointment, deleteAppointment, updateAppointment }) {
+  const specialty = (specialty) => {
+    return specialty ? `Doctor Specialty: ${specialty}` : null;
+  };
+  const symptoms = (symptoms) => {
+    return symptoms ? `Symptoms: ${symptoms}` : null;
+  };
+  const notes = (notes) => {
+    return notes ? `Notes: ${notes}` : null;
+  };
   return (
     <>
       <tr>
@@ -14,10 +23,12 @@ function Appointment({ appointment, deleteAppointment, updateAppointment }) {
         <td>{appointment.patient}</td>
         <td>{appointment.need_insurance ? "Yes" : "No"}</td>
         <td>{appointment.insurance_approval ? "Yes" : "No"}</td>
-        <td>{appointment.appointment_notes}</td>
-        <td>{appointment.specialty}</td>
-        <td>{appointment.symptoms}</td>
         <td>
+          {notes(appointment.appointment_notes)}
+          <br></br>
+          {specialty(appointment.specialty)}
+          <br></br>
+          {symptoms(appointment.symptoms)}
           <EditAppointment
             buttonLabel={"EDIT"}
             className={"Modal"}
