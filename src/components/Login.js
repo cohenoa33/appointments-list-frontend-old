@@ -15,7 +15,7 @@ function Login({ handleLoginSubmit, toggle }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    let user = { email: email, password: password };
+    let user = { email: email.toLowerCase(), password: password };
     handleLoginSubmit(user);
   };
 

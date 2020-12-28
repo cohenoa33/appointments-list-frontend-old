@@ -20,7 +20,7 @@ function Signup({ handleSignUpSubmit, toggle }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     let user = {
-      email: email,
+      email: email.toLowerCase(),
       password: password,
       password_confirmation: password_confirmation,
     };
