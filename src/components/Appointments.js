@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Appointment from "./Appointment";
-import SortFilter from "./SortFilter";
-import { Table } from "reactstrap";
+import Filter from "./Filter";
+import Sort from "./Sort";
 import helpers from "../services/helpers";
 import moment from "moment";
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
+
+function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return windowDimensions;
+}
 export default function Appointments({
   appointments,
   deleteAppointment,
@@ -27,6 +50,10 @@ export default function Appointments({
       return array.filter(
         (app) => app.insurance_approval === false && app.need_insurance === true
       );
+    if (fieldName === "insurance_done")
+      return array.filter(
+        (app) => app.insurance_approval === true && app.need_insurance === true
+      );
     if (fieldName === "past_only")
       return array.filter((app) => {
         if (moment(app.date, "YYYY/MM/DD").isBefore(moment())) {
@@ -41,6 +68,15 @@ export default function Appointments({
       });
     return array;
   };
+  const displayFilter = (filter) => {
+    if (filter === "need_insurance")
+      return "Appointments that need insurance approval";
+    if (filter === "insurance_done")
+      return "Appointments that approved by insurance";
+    if (filter === "past_only") return "Archive Appointments";
+    if (filter === "future") return "Next Appointments";
+    if (filter === "all") return "All Appointments";
+  };
 
   appointments = helpers.sortBy(
     filterBy(appointments, filter),
@@ -50,18 +86,53 @@ export default function Appointments({
 
   return (
     <div>
-      <SortFilter sortingBy={sortingBy} setFilter={setFilter} />
-      <br />
+      {useWindowDimensions().width > 760 ? (
+        <Filter sortingBy={sortingBy} setFilter={setFilter} />
+      ) : (
+        <Sort sortingBy={sortingBy} setFilter={setFilter} />
+      )}
+      <h1>{displayFilter(filter)}</h1>
+
       <div>
         <table className=" table-hover">
           <thead>
             <tr className="table-info">
-              <th>Date</th>
-              <th>Time</th>
-              <th>Doctor</th>
+              <th>
+                <button
+                  className={sort === "date" ? "sorting" : "hidden-button"}
+                  onClick={() => sortingBy("date")}
+                >
+                  Date
+                </button>
+              </th>
+              <th>
+                <button
+                  className={sort === "doctor" ? "sorting" : "hidden-button"}
+                  onClick={() => sortingBy("doctor")}
+                >
+                  Doctor
+                </button>
+              </th>
+              <th>
+                <button
+                  className={sort === "patient" ? "sorting" : "hidden-button"}
+                  onClick={() => sortingBy("patient")}
+                >
+                  Patient Name
+                </button>
+              </th>
               <th>Address</th>
-              <th>Patient Name</th>
-              <th>Need Insurance Approval?</th>
+              <th>
+                <button
+                  className={
+                    sort === "insurance_approval" ? "sorting" : "hidden-button"
+                  }
+                  onClick={() => sortingBy("insurance_approval")}
+                >
+                  Need Insurance Approval?
+                </button>
+              </th>
+
               <th>Approved by Insurance?</th>
               <th>Notes</th>
             </tr>

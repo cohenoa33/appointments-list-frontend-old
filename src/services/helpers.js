@@ -19,6 +19,13 @@ const sortBy = (array, name, order) => {
         return returnValue(nameA, nameB, order);
       });
     }
+    case "insurance_approval": {
+      let needInsurance = array.filter((app) => app.need_insurance === true);
+      let noInsurance = array.filter((app) => app.need_insurance !== true);
+      return order
+        ? [...needInsurance, ...noInsurance]
+        : [...noInsurance, ...needInsurance];
+    }
     default:
       return array;
   }

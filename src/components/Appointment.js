@@ -16,11 +16,13 @@ function Appointment({ appointment, deleteAppointment, updateAppointment }) {
   return (
     <>
       <tr>
-        <td>{moment(appointment.date).format("dddd, MMMM Do YYYY")}</td>
-        <td>{appointment.time}</td>
+        <td>
+          {moment(appointment.date).format("dddd, MMMM Do YYYY")} at{" "}
+          {appointment.time}
+        </td>
         <td>{appointment.doctor}</td>
-        <td>{appointment.location}</td>
         <td>{appointment.patient}</td>
+        <td>{appointment.location}</td>
         <td>{appointment.need_insurance ? "Yes" : "No"}</td>
         <td>{appointment.insurance_approval ? "Yes" : "No"}</td>
         <td>

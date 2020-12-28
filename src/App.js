@@ -149,6 +149,7 @@ class App extends React.Component {
         {!this.state.isUser ? (
           <>
             {this.renderLogin()}
+            <div className="hidden"></div>
             {this.renderSignup()}
           </>
         ) : (
@@ -157,6 +158,7 @@ class App extends React.Component {
             {this.state.isUser
               ? this.renderAppointmentForm(this.state.user.id)
               : null}
+            <div className="hidden"></div>
             {this.renderHome()}
           </>
         )}

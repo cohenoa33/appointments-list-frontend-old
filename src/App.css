@@ -5,6 +5,33 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+.hidden {
+  overflow: hidden;
+  padding: 20px;
+}
+
+button.hidden-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  overflow: visible;
+  outline: none;
+  transition-duration: 0.4s;
+  font-weight: bold;
+}
+button.hidden-button:hover,
+.sorting {
+  color: #008cba;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  overflow: visible;
+  outline: none;
+}
+button:focus {
+  outline: none;
+}
 
 th {
   font-weight: bold;
@@ -48,6 +75,7 @@ th {
   tr {
     vertical-align: end;
     border: none;
+    padding-bottom: 10px;
   }
 
   td {
@@ -72,24 +100,21 @@ th {
     content: "Date";
   }
   td:nth-of-type(2):before {
-    content: "Time";
+    content: "Doctor";
   }
   td:nth-of-type(3):before {
-    content: "Doctor";
+    content: "Patient Name";
   }
   td:nth-of-type(4):before {
     content: "Address";
   }
   td:nth-of-type(5):before {
-    content: "Patient Name";
-  }
-  td:nth-of-type(6):before {
     content: "Need Insurance";
   }
-  td:nth-of-type(7):before {
+  td:nth-of-type(6):before {
     content: "Approved By Insurance";
   }
-  td:nth-of-type(8):before {
+  td:nth-of-type(7):before {
     content: "More";
   }
   /* td:nth-of-type(9):before {
