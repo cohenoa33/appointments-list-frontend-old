@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, ModalBody, Modal, ModalHeader } from "reactstrap";
+import { Button, ModalBody, Modal, ModalHeader, ModalFooter } from "reactstrap";
 
 class AppointmentForm extends React.Component {
   state = {
@@ -52,100 +52,121 @@ class AppointmentForm extends React.Component {
           <ModalHeader toggle={this.toggle}>New Appointment</ModalHeader>
           <ModalBody>
             <form onSubmit={this.handleSubmit}>
-              <label>
-                Doctor:
+              <div className="col-25">
+                <label>Doctor</label>
+              </div>
+              <div className="col-75">
                 <input
                   type="text"
                   name="doctor"
                   onChange={this.handleChange}
                   required
                 />
-              </label>
-              <label>
-                Patient:
+              </div>
+              <div className="col-25">
+                <label>Specialty\Type</label>
+              </div>
+              <div className="col-75">
+                <input
+                  type="text"
+                  name="specialty"
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="col-25">
+                <label>Patient</label>
+              </div>
+              <div className="col-75">
                 <input
                   type="text"
                   name="patient"
                   onChange={this.handleChange}
                   required
                 />
-              </label>
-              <label>
-                Date:
+              </div>
+              <div className="col-25">
+                <label>Date</label>
+              </div>
+              <div className="col-75">
                 <input
                   type="date"
                   name="date"
                   onChange={this.handleChange}
                   required
                 />
-              </label>
-              <label>
-                Time:
+              </div>
+              <br />
+              <div className="col-25">
+                <label>Time</label>
+              </div>
+              <div className="col-75">
                 <input
                   type="time"
                   name="time"
                   onChange={this.handleChange}
                   required
                 />
-              </label>
-              <label>
-                Address:
+              </div>
+              <div className="col-25">
+                <label>Address</label>
+              </div>
+              <div className="col-75">
                 <input
                   type="text"
                   name="location"
                   onChange={this.handleChange}
                   required
                 />
-              </label>
-              <label>
-                Need Insurance Approval:
-                <input
-                  name="need_insurance"
-                  type="checkbox"
-                  checked={this.state.appointment.need_insurance}
-                  onChange={this.handleChange}
-                />
-              </label>
+              </div>
               <br />
-              <label>
-                Approved By Insurance:
-                <input
-                  name="insurance_approval"
-                  type="checkbox"
-                  checked={this.state.appointment.insurance_approval}
-                  onChange={this.handleChange}
-                />
-              </label>
-
-              <label>
-                Specialty:
-                <input
-                  type="text"
-                  name="specialty"
-                  onChange={this.handleChange}
-                />
-              </label>
-              <label>
-                Symptoms:
-                <input
+              <div className="col-25">
+                <label>Symptoms</label>
+              </div>
+              <div className="col-75">
+                <textarea
                   type="text"
                   name="symptoms"
                   onChange={this.handleChange}
                 />
-              </label>
-              <label>
-                Notes:
-                <input
-                  type="textarea"
+              </div>
+              <div className="col-25">
+                <label>Additional Information</label>
+              </div>
+              <div className="col-75">
+                <textarea
+                  type="text"
                   name="appointment_notes"
                   onChange={this.handleChange}
                 />
-              </label>
-
-              <br />
-              <input type="submit" value="Save" />
+              </div>
+              <div className="center-100">
+                <label>
+                  Need Insurance Approval
+                  <input
+                    name="need_insurance"
+                    type="checkbox"
+                    checked={this.state.appointment.need_insurance}
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <br />
+                <label>
+                  Approved By Insurance
+                  <input
+                    name="insurance_approval"
+                    type="checkbox"
+                    checked={this.state.appointment.insurance_approval}
+                    onChange={this.handleChange}
+                  />
+                </label>
+              </div>
             </form>
           </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.handleSubmit}>
+              Add Appointment
+            </Button>{" "}
+          </ModalFooter>
         </Modal>
       </>
     );

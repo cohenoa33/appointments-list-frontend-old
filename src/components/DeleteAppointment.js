@@ -19,8 +19,7 @@ const DeleteAppointment = ({
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalBody>
           {appointment.patient}'s appointment for Dr. {appointment.doctor}
-          on {appointment.date} at {appointment.time}
-          <br></br>
+          on {appointment.date} at {appointment.time}.<br></br>
           Are you sure you want to delete this appointment?
         </ModalBody>
         <ModalFooter>

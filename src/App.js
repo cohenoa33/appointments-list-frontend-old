@@ -154,7 +154,9 @@ class App extends React.Component {
           </>
         ) : (
           <>
-            <Button onClick={this.handleLogout}>Logout</Button>
+            <Button className="logout-button" onClick={this.handleLogout}>
+              Logout
+            </Button>
             {this.state.isUser
               ? this.renderAppointmentForm(this.state.user.id)
               : null}

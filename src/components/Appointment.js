@@ -5,7 +5,7 @@ import moment from "moment";
 
 function Appointment({ appointment, deleteAppointment, updateAppointment }) {
   const specialty = (specialty) => {
-    return specialty ? `Doctor Specialty: ${specialty}` : null;
+    return specialty ? `(${specialty})` : null;
   };
   const symptoms = (symptoms) => {
     return symptoms ? `Symptoms: ${symptoms}` : null;
@@ -20,7 +20,10 @@ function Appointment({ appointment, deleteAppointment, updateAppointment }) {
           {moment(appointment.date).format("dddd, MMMM Do YYYY")} at{" "}
           {appointment.time}
         </td>
-        <td>{appointment.doctor}</td>
+        <td>
+          {appointment.doctor}
+          <br /> {specialty(appointment.specialty)}
+        </td>
         <td>{appointment.patient}</td>
         <td>{appointment.location}</td>
         <td>{appointment.need_insurance ? "Yes" : "No"}</td>
@@ -28,7 +31,7 @@ function Appointment({ appointment, deleteAppointment, updateAppointment }) {
         <td>
           {notes(appointment.appointment_notes)}
           <br></br>
-          {specialty(appointment.specialty)}
+
           <br></br>
           {symptoms(appointment.symptoms)}
           <EditAppointment

@@ -33,8 +33,8 @@ const EditAppointment = ({
         <ModalHeader toggle={toggle}>Edit Appointment</ModalHeader>
         <ModalBody>
           <form onSubmit={handleSubmit}>
-            <label>
-              Need Insurance Approval:
+            <div className="center-100">
+              <label>Need Insurance Approval</label>
               <input
                 name="need_insurance"
                 type="checkbox"
@@ -42,10 +42,9 @@ const EditAppointment = ({
                 onChange={handleChange}
                 value={newAppointment.need_insurance}
               />
-            </label>
-            <br />
-            <label>
-              Approved By Insurance:
+
+              <br />
+              <label>Approved By Insurance</label>
               <input
                 name="insurance_approval"
                 type="checkbox"
@@ -53,10 +52,12 @@ const EditAppointment = ({
                 onChange={handleChange}
                 value={newAppointment.insurance_approval}
               />
-            </label>
+            </div>
             <br />
-            <label>
-              Doctor:
+            <div className="col-25">
+              <label>Doctor</label>
+            </div>
+            <div className="col-75">
               <input
                 type="text"
                 name="doctor"
@@ -64,49 +65,11 @@ const EditAppointment = ({
                 value={newAppointment.doctor}
                 required
               />
-            </label>
-            <label>
-              Patient:
-              <input
-                type="text"
-                name="patient"
-                onChange={handleChange}
-                value={newAppointment.patient}
-                required
-              />
-            </label>
-            <label>
-              Date:
-              <input
-                type="date"
-                name="date"
-                onChange={handleChange}
-                value={newAppointment.date}
-                required
-              />
-            </label>
-            <label>
-              Time:
-              <input
-                type="time"
-                name="time"
-                value={newAppointment.time}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Address:
-              <input
-                type="text"
-                name="location"
-                value={newAppointment.location}
-                onChange={handleChange}
-                required
-              />
-            </label>
-            <label>
-              Specialty:
+            </div>
+            <div className="col-25">
+              <label>Specialty\Type</label>
+            </div>
+            <div className="col-75">
               <input
                 type="text"
                 name="specialty"
@@ -117,10 +80,60 @@ const EditAppointment = ({
                     : ""
                 }
               />
-            </label>
-            <label>
-              Symptoms:
+            </div>
+            <div className="col-25">
+              <label>Patient</label>
+            </div>
+            <div className="col-75">
               <input
+                type="text"
+                name="patient"
+                onChange={handleChange}
+                value={newAppointment.patient}
+                required
+              />
+            </div>
+            <div className="col-25">
+              <label>Date</label>
+            </div>
+            <div className="col-75">
+              <input
+                type="date"
+                name="date"
+                onChange={handleChange}
+                value={newAppointment.date}
+                required
+              />
+            </div>
+            <div className="col-25">
+              <label>Time</label>
+            </div>
+            <div className="col-75">
+              <input
+                type="time"
+                name="time"
+                value={newAppointment.time}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="col-25">
+              <label>Address</label>
+            </div>
+            <div className="col-75">
+              <input
+                type="text"
+                name="location"
+                value={newAppointment.location}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="col-25">
+              <label>Symptoms</label>
+            </div>
+            <div className="col-75">
+              <textarea
                 type="text"
                 name="symptoms"
                 onChange={handleChange}
@@ -130,10 +143,12 @@ const EditAppointment = ({
                     : ""
                 }
               />
-            </label>
-            <label>
-              Notes:
-              <input
+            </div>
+            <div className="col-25">
+              <label>Additional Information</label>
+            </div>
+            <div className="col-75">
+              <textarea
                 type="textarea"
                 name="appointment_notes"
                 onChange={handleChange}
@@ -143,7 +158,7 @@ const EditAppointment = ({
                     : ""
                 }
               />
-            </label>
+            </div>
 
             <br />
           </form>
