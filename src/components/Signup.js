@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Button } from "reactstrap";
 
-function Signup({ handleSignUpSubmit }) {
+function Signup({ handleSignUpSubmit, toggle }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPassword_confirmation] = useState("");
@@ -27,23 +28,29 @@ function Signup({ handleSignUpSubmit }) {
   };
 
   return (
-    <div>
+    <div className="login-100">
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
+          className="login"
           type="text"
           onChange={handleChange}
           name="email"
           placeholder="Email"
           value={email}
         />
+        <br />
         <input
+          className="login"
           type="password"
           onChange={handleChange}
           value={password}
           name="password"
           placeholder="Password"
-        ></input>
+        />
+
+        <br />
         <input
+          className="login"
           type="password"
           onChange={handleChange}
           name="password_confirmation"
@@ -51,10 +58,15 @@ function Signup({ handleSignUpSubmit }) {
           value={password_confirmation}
         />
         <br />
-        <button className="btn" type="submit">
+        <br />
+        <Button type="submit" color="primary">
           Create an Account
-        </button>
+        </Button>
       </form>
+      <br />
+      <Button onClick={toggle} color="info" size="sm">
+        Already have an account?
+      </Button>
     </div>
   );
 }

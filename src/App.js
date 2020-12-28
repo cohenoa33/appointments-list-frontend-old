@@ -10,6 +10,7 @@ import { Button, Alert, Container } from "reactstrap";
 
 class App extends React.Component {
   state = {
+    toggle: false,
     user: {},
     jwt: "",
     isUser: false,
@@ -28,6 +29,9 @@ class App extends React.Component {
       });
     }
   }
+  toggle = () => {
+    this.setState({ toggle: !this.state.toggle });
+  };
 
   setLogin = (data) => {
     this.setState({
@@ -93,8 +97,12 @@ class App extends React.Component {
     });
   };
 
-  renderLogin = () => <Login handleLoginSubmit={this.handleLoginSubmit} />;
-  renderSignup = () => <Signup handleSignUpSubmit={this.handleSignUpSubmit} />;
+  renderLogin = () => (
+    <Login handleLoginSubmit={this.handleLoginSubmit} toggle={this.toggle} />
+  );
+  renderSignup = () => (
+    <Signup handleSignUpSubmit={this.handleSignUpSubmit} toggle={this.toggle} />
+  );
   renderAppointmentForm = (id) => (
     <AppointmentForm
       addAppointment={this.AddAppointment}
@@ -144,22 +152,21 @@ class App extends React.Component {
   };
 
   render() {
+    const { toggle, isUser, user } = this.state;
     return (
       <Container>
-        {!this.state.isUser ? (
+        {!isUser ? (
           <>
-            {this.renderLogin()}
-            <div className="hidden"></div>
-            {this.renderSignup()}
+            <div className="col-50">
+              {toggle ? this.renderSignup() : this.renderLogin()}
+            </div>
           </>
         ) : (
           <>
             <Button className="logout-button" onClick={this.handleLogout}>
               Logout
             </Button>
-            {this.state.isUser
-              ? this.renderAppointmentForm(this.state.user.id)
-              : null}
+            {isUser ? this.renderAppointmentForm(user.id) : null}
             <div className="hidden"></div>
             {this.renderHome()}
           </>

@@ -70,6 +70,14 @@ th {
   width: 100%;
   text-align: center;
 }
+.login-100 {
+  padding: 20px;
+  margin-top: 20px;
+  display: inline-block;
+  width: 100%;
+  background-color: #909ca0;
+  text-align: center;
+}
 .right-100 {
   margin-top: 20px;
   display: inline-block;
@@ -162,7 +170,18 @@ input {
   } */
 }
 
+input.login[type="text"],
+input.login[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
 input[type="text"],
+input[type="password"],
 select,
 textarea {
   width: 100%;
@@ -171,6 +190,7 @@ textarea {
   border-radius: 4px;
   resize: vertical;
 }
+
 input[type="time"],
 input[type="date"] {
   width: 60%;
@@ -229,6 +249,12 @@ input[type="checkbox"]:hover {
   float: left;
   width: 75%;
   margin-top: 6px;
+}
+.col-50 {
+  float: center;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 /* Clear floats after the columns */

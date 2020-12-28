@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Button } from "reactstrap";
 
-function Login({ handleLoginSubmit }) {
+function Login({ handleLoginSubmit, toggle }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,18 +20,21 @@ function Login({ handleLoginSubmit }) {
   };
 
   return (
-    <div>
+    <div className="login-100">
       <div>
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
+            className="login"
             autoComplete="on"
             onChange={handleChange}
             type="text"
             value={email}
             name="email"
-            placeholder="email"
+            placeholder="Email"
           ></input>
+          <br />
           <input
+            className="login"
             onChange={handleChange}
             type="password"
             value={password}
@@ -38,8 +42,15 @@ function Login({ handleLoginSubmit }) {
             placeholder="Password"
           ></input>
           <br />
-          <button className="btn">Sign In</button>
+          <br />
+          <Button type="submit" color="primary">
+            Sign In
+          </Button>
         </form>
+        <br />
+        <Button onClick={toggle} color="info" size="sm">
+          Need to signup?
+        </Button>
       </div>
     </div>
   );
