@@ -59,7 +59,7 @@ function Signup({ handleSignUpSubmit, toggle }) {
         />
         <br />
         <br />
-        <Button type="submit" color="primary">
+        <Button type="submit" color="primary" size="lg" block>
           Create an Account
         </Button>
       </form>

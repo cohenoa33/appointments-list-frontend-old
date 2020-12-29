@@ -34,7 +34,7 @@ export default function Appointments({
   updateAppointment,
 }) {
   const [sort, setSort] = useState("date");
-  const [isSort, setIsSort] = useState({ date: false });
+  const [isSort, setIsSort] = useState({ date: true });
   const [filter, setFilter] = useState("future");
 
   const sortingBy = (fieldName) => {
@@ -56,15 +56,11 @@ export default function Appointments({
       );
     if (fieldName === "past_only")
       return array.filter((app) => {
-        if (moment(app.date, "YYYY/MM/DD").isBefore(moment())) {
-          return app;
-        }
+        return moment(app.date, "YYYY/MM/DD").isBefore(moment()) ? app : null;
       });
     if (fieldName === "future")
       return array.filter((app) => {
-        if (!moment(app.date, "YYYY/MM/DD").isBefore(moment())) {
-          return app;
-        }
+        return !moment(app.date, "YYYY/MM/DD").isBefore(moment()) ? app : null;
       });
     return array;
   };
@@ -134,7 +130,7 @@ export default function Appointments({
               </th>
 
               <th>Approved by Insurance?</th>
-              <th>Notes</th>
+              <th>Additional Information</th>
             </tr>
           </thead>
           <tbody>

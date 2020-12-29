@@ -15,9 +15,6 @@ export default function Filter({ setFilter }) {
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret>Filter</DropdownToggle>
       <DropdownMenu>
-        <DropdownItem onClick={() => setFilter("all")}>
-          All Appointments
-        </DropdownItem>
         <DropdownItem onClick={() => setFilter("future")}>
           Future Appointments
         </DropdownItem>
@@ -29,6 +26,9 @@ export default function Filter({ setFilter }) {
         </DropdownItem>
         <DropdownItem onClick={() => setFilter("insurance_done")}>
           Approved by Insurance
+        </DropdownItem>
+        <DropdownItem onClick={() => setFilter("all")}>
+          All Appointments
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

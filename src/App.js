@@ -4,9 +4,10 @@ import api from "./services/api";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import NavBar from "./components/NavBar";
 import Appointments from "./components/Appointments";
 import AppointmentForm from "./components/AppointmentForm";
-import { Button, Alert, Container } from "reactstrap";
+import { Alert, Container } from "reactstrap";
 
 class App extends React.Component {
   state = {
@@ -29,7 +30,7 @@ class App extends React.Component {
       });
     }
   }
-  toggle = () => {
+  setToggle = () => {
     this.setState({ toggle: !this.state.toggle });
   };
 
@@ -84,7 +85,6 @@ class App extends React.Component {
   };
 
   AddAppointment = (appointment) => {
-    // debugger;
     api.appointment.add(appointment).then((data) => {
       if (!data.error) {
         this.setState({
@@ -98,10 +98,13 @@ class App extends React.Component {
   };
 
   renderLogin = () => (
-    <Login handleLoginSubmit={this.handleLoginSubmit} toggle={this.toggle} />
+    <Login handleLoginSubmit={this.handleLoginSubmit} toggle={this.setToggle} />
   );
   renderSignup = () => (
-    <Signup handleSignUpSubmit={this.handleSignUpSubmit} toggle={this.toggle} />
+    <Signup
+      handleSignUpSubmit={this.handleSignUpSubmit}
+      toggle={this.setToggle}
+    />
   );
   renderAppointmentForm = (id) => (
     <AppointmentForm
@@ -152,7 +155,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { toggle, isUser, user } = this.state;
+    const { toggle, isUser } = this.state;
     return (
       <Container>
         {!isUser ? (
@@ -163,10 +166,11 @@ class App extends React.Component {
           </>
         ) : (
           <>
-            <Button className="logout-button" onClick={this.handleLogout}>
-              Logout
-            </Button>
-            {isUser ? this.renderAppointmentForm(user.id) : null}
+            <NavBar
+              user={this.state.user}
+              logout={this.handleLogout}
+              addAppointment={this.AddAppointment}
+            />
             <div className="hidden"></div>
             {this.renderHome()}
           </>

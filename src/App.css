@@ -75,7 +75,7 @@ th {
   margin-top: 20px;
   display: inline-block;
   width: 100%;
-  background-color: #909ca0;
+  background-color: #bfced375;
   text-align: center;
 }
 .right-100 {
@@ -151,7 +151,7 @@ input {
     content: "Approved By Insurance";
   }
   td:nth-of-type(7):before {
-    content: "More";
+    content: "Additional Information";
   }
   /* td:nth-of-type(9):before {
     content: "";

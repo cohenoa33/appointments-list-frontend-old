@@ -43,7 +43,7 @@ function Login({ handleLoginSubmit, toggle }) {
           ></input>
           <br />
           <br />
-          <Button type="submit" color="primary">
+          <Button type="submit" color="primary" size="lg" block>
             Sign In
           </Button>
         </form>

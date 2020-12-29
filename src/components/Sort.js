@@ -26,9 +26,7 @@ export default function Sort({ sortingBy, setFilter }) {
         </DropdownItem>
         <DropdownItem disabled>Filter</DropdownItem>
         <DropdownItem divider />
-        <DropdownItem onClick={() => setFilter("all")}>
-          All Appointments
-        </DropdownItem>
+
         <DropdownItem onClick={() => setFilter("future")}>
           Future Appointments
         </DropdownItem>
@@ -40,6 +38,9 @@ export default function Sort({ sortingBy, setFilter }) {
         </DropdownItem>
         <DropdownItem onClick={() => setFilter("insurance_done")}>
           Approved by Insurance
+        </DropdownItem>
+        <DropdownItem onClick={() => setFilter("all")}>
+          All Appointments
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
