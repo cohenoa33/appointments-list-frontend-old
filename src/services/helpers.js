@@ -44,7 +44,24 @@ const returnDate = (a, b) => {
     : -1;
 };
 const validate = (appointment) => {
-  debugger;
+  if (appointment.doctor !== undefined && appointment.doctor.length > 1) {
+    if (appointment.patient !== undefined && appointment.patient.length > 1) {
+      if (appointment.date !== undefined && validateDate(appointment.date)) {
+        if (appointment.time !== undefined) {
+          return true;
+        }
+        return "Time is required: please pick time and specify AMPM";
+      }
+      return "Date is required: please pick appointment date";
+    }
+    return "  ";
+  }
+  return "Doctor is required: make sure doctor's name is 2 characters minimum";
+};
+
+const validateDate = (date) => {
+  let fiveYearsYear = new Date().getFullYear() - 5;
+  return +date.split("-")[0] >= fiveYearsYear ? true : false;
 };
 
 let helpers = {
