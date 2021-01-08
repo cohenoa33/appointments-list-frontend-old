@@ -14,41 +14,39 @@ function Appointment({ appointment, deleteAppointment, updateAppointment }) {
     return notes ? `Notes: ${notes}` : null;
   };
   return (
-    <>
-      <tr>
-        <td>
-          {moment(appointment.date).format("dddd, MMMM Do YYYY")} at{" "}
-          {appointment.time}
-        </td>
-        <td>
-          {appointment.doctor}
-          <br /> {specialty(appointment.specialty)}
-        </td>
-        <td>{appointment.patient}</td>
-        <td>{appointment.location}</td>
-        <td>{appointment.need_insurance ? "Yes" : "No"}</td>
-        <td>{appointment.insurance_approval ? "Yes" : "No"}</td>
-        <td>
-          {notes(appointment.appointment_notes)}
-          <br></br>
+    <tr>
+      <td>
+        {moment(appointment.date).format("dddd, MMMM Do YYYY")} at{" "}
+        {appointment.time}
+      </td>
+      <td>
+        {appointment.doctor}
+        <br /> {specialty(appointment.specialty)}
+      </td>
+      <td>{appointment.patient}</td>
+      <td>{appointment.location}</td>
+      <td>{appointment.need_insurance ? "Yes" : "No"}</td>
+      <td>{appointment.insurance_approval ? "Yes" : "No"}</td>
+      <td className="additional-info">
+        {notes(appointment.appointment_notes)}
+        <br></br>
 
-          <br></br>
-          {symptoms(appointment.symptoms)}
-          <EditAppointment
-            buttonLabel={"EDIT"}
-            className={"Modal"}
-            appointment={appointment}
-            updateAppointment={updateAppointment}
-          />
-          <DeleteAppointment
-            buttonLabel={"DELETE"}
-            className={"Modal"}
-            appointment={appointment}
-            deleteAppointment={deleteAppointment}
-          />
-        </td>
-      </tr>
-    </>
+        <br></br>
+        {symptoms(appointment.symptoms)}
+        <EditAppointment
+          buttonLabel={"EDIT"}
+          className={"Modal"}
+          appointment={appointment}
+          updateAppointment={updateAppointment}
+        />
+        <DeleteAppointment
+          buttonLabel={"DELETE"}
+          className={"Modal"}
+          appointment={appointment}
+          deleteAppointment={deleteAppointment}
+        />
+      </td>
+    </tr>
   );
 }
 

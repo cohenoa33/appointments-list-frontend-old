@@ -43,9 +43,13 @@ const returnDate = (a, b) => {
       : -1
     : -1;
 };
+const validate = (appointment) => {
+  debugger;
+};
 
 let helpers = {
   sortBy: sortBy,
+  validate: validate,
 };
 
 export default helpers;

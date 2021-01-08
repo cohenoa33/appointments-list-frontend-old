@@ -1,4 +1,5 @@
 import React from "react";
+import helpers from "../services/helpers";
 
 import { Button, ModalBody, Modal, ModalHeader, ModalFooter } from "reactstrap";
 
@@ -34,14 +35,19 @@ class AppointmentForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let appointment = this.state.appointment;
-    this.props.addAppointment(appointment);
-    this.toggle();
+    let isValid = helpers.validate(appointment);
+    if (isValid !== true) {
+      alert(`${isValid}`);
+    } else {
+      this.props.addAppointment(appointment);
+      this.toggle();
+    }
   };
 
   render() {
     return (
       <>
-        <Button color="info" onClick={this.toggle}>
+        <Button onClick={this.toggle} className="add-new-btn">
           {this.props.buttonLabel}
         </Button>
         <Modal

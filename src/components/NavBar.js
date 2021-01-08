@@ -15,7 +15,7 @@ const NavBar = ({ user, logout, addAppointment }) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">My Appointment</NavbarBrand>
+        <NavbarBrand href="/">MY APPOINTMENTS</NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem> {renderAppointmentForm(user.id, addAppointment)}</NavItem>
         </Nav>

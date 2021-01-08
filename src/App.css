@@ -10,6 +10,9 @@ table {
   padding: 20px;
 }
 
+.bg-light {
+  background-color: transparent !important;
+}
 button.hidden-button {
   background: transparent;
   border: none;
@@ -32,6 +35,17 @@ button.hidden-button:hover,
 button:focus {
   outline: none;
 }
+.add-new-btn {
+  background-color: transparent;
+  border: none;
+  color: #2aa1c0;
+}
+
+.add-new-btn:hover {
+  background-color: #2aa1c0;
+  border: none;
+  color: white;
+}
 
 th {
   font-weight: bold;
@@ -42,6 +56,9 @@ td,
 th {
   padding: 6px;
   vertical-align: middle;
+  text-align: center;
+}
+.additional-info {
   text-align: left;
 }
 .table thead th {
@@ -98,6 +115,7 @@ input {
   tr {
     display: block;
     border: none;
+    text-align: left;
   }
 
   thead tr {
@@ -111,7 +129,9 @@ input {
   tr {
     vertical-align: end;
     border: none;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px dashed;
   }
 
   td {
@@ -119,14 +139,17 @@ input {
     vertical-align: middle;
     position: relative;
     padding: 0.05rem;
-    padding-left: 50%;
+    padding-left: 60%;
+    padding-top: 10px;
+    padding-right: 10px;
+    border: solid;
   }
 
   td:before {
     position: absolute;
-    top: 6px;
     left: 6px;
-    width: 45%;
+    right: 6px;
+    width: 40%;
     padding-right: 10px;
     white-space: nowrap;
     vertical-align: middle;
@@ -168,6 +191,9 @@ input {
   td:nth-of-type(13):before {
     content: "";
   } */
+}
+.add-new-btn {
+  padding: 0;
 }
 
 input.login[type="text"],
