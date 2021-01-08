@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
+import helpers from "../services/helpers";
+
 const EditAppointment = ({
   buttonLabel,
   className,
@@ -20,8 +22,14 @@ const EditAppointment = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateAppointment(newAppointment);
-    toggle();
+
+    let isValid = helpers.validate(newAppointment);
+    if (isValid !== true) {
+      alert(`${isValid}`);
+    } else {
+      updateAppointment(newAppointment);
+      toggle();
+    }
   };
 
   return (
