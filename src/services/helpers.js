@@ -52,7 +52,7 @@ const validate = (appointment) => {
         }
         return "Time is required: please pick hour, minutes and AM-PM";
       }
-      return "Date is required: please pick appointment date";
+      return "Date is required: please pick valid appointment date";
     }
     return "Patient is required: make sure patient's name is 2 characters minimum";
   }

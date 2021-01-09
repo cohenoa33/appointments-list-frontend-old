@@ -82,11 +82,13 @@ export default function Appointments({
 
   return (
     <div>
-      {useWindowDimensions().width > 760 ? (
-        <Filter sortingBy={sortingBy} setFilter={setFilter} />
-      ) : (
-        <Sort sortingBy={sortingBy} setFilter={setFilter} />
-      )}
+      <div className="filter">
+        {useWindowDimensions().width > 760 ? (
+          <Filter sortingBy={sortingBy} setFilter={setFilter} />
+        ) : (
+          <Sort sortingBy={sortingBy} setFilter={setFilter} />
+        )}
+      </div>
       <h1>{displayFilter(filter)}</h1>
 
       <div>

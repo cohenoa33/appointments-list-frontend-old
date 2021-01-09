@@ -9,7 +9,9 @@ table {
   overflow: hidden;
   padding: 20px;
 }
-
+.filter {
+  float: right;
+}
 .bg-light {
   background-color: transparent !important;
 }
@@ -42,9 +44,10 @@ button:focus {
 }
 
 .add-new-btn:hover {
-  background-color: #2aa1c0;
   border: none;
-  color: white;
+  color: #2aa1c0;
+  text-decoration: underline;
+  background-color: transparent;
 }
 
 th {
@@ -148,7 +151,6 @@ input {
     padding-left: 60%;
     padding-top: 10px;
     padding-right: 10px;
-    border: solid;
   }
 
   td:before {

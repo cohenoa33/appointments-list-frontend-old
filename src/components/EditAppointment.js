@@ -132,9 +132,12 @@ const EditAppointment = ({
               <input
                 type="text"
                 name="location"
-                value={newAppointment.location}
                 onChange={handleChange}
-                required
+                value={
+                  newAppointment.location !== null
+                    ? newAppointment.location
+                    : ""
+                }
               />
             </div>
             <div className="col-25">
