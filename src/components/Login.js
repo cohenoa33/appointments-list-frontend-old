@@ -48,9 +48,11 @@ function Login({ handleLoginSubmit, toggle }) {
           </Button>
         </form>
         <br />
-        <Button onClick={toggle} color="info" size="sm">
-          Need to signup?
-        </Button>
+        Don't have an account?
+        <br />
+        <a className="login-signup" onClick={toggle}>
+          Sign Up
+        </a>
       </div>
     </div>
   );

@@ -64,9 +64,11 @@ function Signup({ handleSignUpSubmit, toggle }) {
         </Button>
       </form>
       <br />
-      <Button onClick={toggle} color="info" size="sm">
-        Already have an account?
-      </Button>
+      Already have an account?
+      <br />
+      <a className="login-signup" onClick={toggle}>
+        Log In
+      </a>
     </div>
   );
 }

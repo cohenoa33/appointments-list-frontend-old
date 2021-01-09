@@ -50,11 +50,11 @@ const validate = (appointment) => {
         if (appointment.time !== undefined) {
           return true;
         }
-        return "Time is required: please pick time and specify AMPM";
+        return "Time is required: please pick hour, minutes and AM-PM";
       }
       return "Date is required: please pick appointment date";
     }
-    return "  ";
+    return "Patient is required: make sure patient's name is 2 characters minimum";
   }
   return "Doctor is required: make sure doctor's name is 2 characters minimum";
 };
