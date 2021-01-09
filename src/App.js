@@ -7,7 +7,7 @@ import Signup from "./components/Signup";
 import NavBar from "./components/NavBar";
 import Appointments from "./components/Appointments";
 import AppointmentForm from "./components/AppointmentForm";
-import { Alert, Container } from "reactstrap";
+import { Container } from "reactstrap";
 
 class App extends React.Component {
   state = {
@@ -25,7 +25,7 @@ class App extends React.Component {
         if (!data.error) {
           this.setLogin(data);
         } else {
-          return <Alert color="primary"> {data.error}</Alert>;
+          alert(data.error);
         }
       });
     }
@@ -114,6 +114,7 @@ class App extends React.Component {
       user_id={id}
     />
   );
+
   renderHome = () => {
     return (
       <>

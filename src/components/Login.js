@@ -50,9 +50,9 @@ function Login({ handleLoginSubmit, toggle }) {
         <br />
         Don't have an account?
         <br />
-        <a className="login-signup" onClick={toggle}>
+        <button className="login-signup" onClick={toggle}>
           Sign Up
-        </a>
+        </button>
       </div>
     </div>
   );

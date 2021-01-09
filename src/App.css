@@ -104,8 +104,11 @@ th {
 input {
   margin: auto;
 }
-a.login-signup {
+.login-signup {
   cursor: pointer;
+  color: #116dff;
+  border: none;
+  background-color: transparent;
 }
 
 @media only screen and (max-width: 760px),
