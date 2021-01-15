@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
+import { Button, Navbar, Nav, NavItem } from "reactstrap";
 import AppointmentForm from "./AppointmentForm";
 
 const NavBar = ({ user, logout, addAppointment }) => {
@@ -15,7 +15,7 @@ const NavBar = ({ user, logout, addAppointment }) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">MY APPOINTMENTS</NavbarBrand>
+        {/* <NavbarBrand href="/">MY APPOINTMENTS</NavbarBrand> */}
         <Nav className="mr-auto" navbar>
           <NavItem> {renderAppointmentForm(user.id, addAppointment)}</NavItem>
         </Nav>

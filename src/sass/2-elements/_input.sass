@@ -1,0 +1,41 @@
+input
+    margin: auto
+label
+    display: inline-block
+
+input.login[type="text"],
+input.login[type="password"]
+    +input(100%, 8px, 1px, solid, $solid-border, 4px, vertical)
+    margin-top: 10px
+
+input[type="text"],
+input[type="password"],
+select,
+textarea
+    +input(100%, 8px, 1px, solid, $solid-border, 4px, vertical)
+
+input[type="time"],
+input[type="date"]
+    +input(60%, 8px, 1px, solid, $solid-border, 4px, vertical)
+
+input[type="submit"]
+    background-color: $submit
+    color: white
+    padding: 12px 20px
+    border: none
+    border-radius: 4px
+    cursor: pointer
+    float: center
+    &:hover
+        background-color: $submit
+
+input[type="checkbox"],
+input:checked
+    font-weight: bold
+    margin-left: 5px
+    background-color: $submit
+    padding: 12px 20px
+    &:checked::after
+        background-color: $submit
+    &:hover
+        filter: brightness(90%)

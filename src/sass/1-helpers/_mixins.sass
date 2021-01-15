@@ -1,0 +1,29 @@
+=hidden-button()
+    background: transparent
+    border: none
+    cursor: pointer
+    overflow: visible
+    outline: none
+    font-weight: bold
+
+=split($dislpay, $float, $width)
+    display: $dislpay
+    float: $float
+    width: $width
+=width-block($dislpay, $text-align, $width, $margin-top)
+    display: $dislpay
+    text-align: $text-align
+    width: $width
+    margin-top: $margin-top
+
+=input($width, $padding, $border-px, $border-type, $border-color, $border-radius, $resize)
+    width: $width
+    padding: $padding
+    border: $border-px $border-type $border-color
+    border-radius: $border-radius
+    resize: $resize
+
+=column($float, $width, $margin-top)
+    float: $float
+    width: $width
+    margin-top: $margin-top

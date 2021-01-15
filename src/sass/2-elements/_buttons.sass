@@ -1,0 +1,31 @@
+.filter
+    float: right
+
+button.hidden-button
+    +hidden-button()
+    transition-duration: 0.4s
+
+button.hidden-button:hover,
+.sorting
+    color: $primary
+    +hidden-button()
+
+button:focus
+    outline: none
+
+.add-new-btn
+    background-color: transparent
+    border: none
+    color: $primary
+    &:hover
+        text-decoration: underline
+
+.logout-button
+    color: #fff
+
+.login-signup
+    +hidden-button()
+    color: $login-signup
+
+.add-new-btn
+    padding: 0

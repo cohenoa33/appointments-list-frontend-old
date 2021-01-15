@@ -1,276 +1,57 @@
-* {
-  box-sizing: border-box;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.hidden {
-  overflow: hidden;
-  padding: 20px;
-}
 .filter {
   float: right;
 }
-.bg-light {
-  background-color: transparent !important;
-}
+
 button.hidden-button {
   background: transparent;
   border: none;
   cursor: pointer;
   overflow: visible;
   outline: none;
-  transition-duration: 0.4s;
   font-weight: bold;
+  transition-duration: 0.4s;
 }
+
 button.hidden-button:hover,
 .sorting {
-  color: #008cba;
-  font-weight: bold;
+  color: #2aa1c0;
   background: transparent;
   border: none;
   cursor: pointer;
   overflow: visible;
   outline: none;
+  font-weight: bold;
 }
+
 button:focus {
   outline: none;
 }
+
 .add-new-btn {
   background-color: transparent;
   border: none;
   color: #2aa1c0;
 }
-
 .add-new-btn:hover {
-  border: none;
-  color: #2aa1c0;
   text-decoration: underline;
-  background-color: transparent;
 }
 
-th {
-  font-weight: bold;
-  vertical-align: middle;
-}
-
-td,
-th {
-  padding: 6px;
-  vertical-align: middle;
-  text-align: center;
-}
-.additional-info {
-  text-align: left;
-}
-.table thead th {
-  vertical-align: middle;
-  border-bottom: 2px solid #dee2e6;
-}
-.table td {
-  vertical-align: middle;
-}
 .logout-button {
   color: #fff;
 }
-.left {
-  display: block;
-  float: left;
-  width: 50%;
-}
-.right {
-  display: block;
-  float: right;
-  width: 50%;
-}
-.center-100 {
-  margin-top: 20px;
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-}
-.login-100 {
-  padding: 20px;
-  margin-top: 20px;
-  display: inline-block;
-  width: 100%;
-  background-color: #bfced375;
-  text-align: center;
-}
-.right-100 {
-  margin-top: 20px;
-  display: inline-block;
-  width: 100%;
-  text-align: right;
-}
-input {
-  margin: auto;
-}
+
 .login-signup {
-  cursor: pointer;
-  color: #116dff;
+  background: transparent;
   border: none;
-  background-color: transparent;
+  cursor: pointer;
+  overflow: visible;
+  outline: none;
+  font-weight: bold;
+  color: #116dff;
 }
 
-@media only screen and (max-width: 760px),
-  (min-device-width: 768px) and (max-device-width: 1024px) {
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
-    border: none;
-    text-align: left;
-  }
-
-  thead tr {
-    position: absolute;
-    color: transparent;
-    padding: 0;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  tr {
-    vertical-align: end;
-    border: none;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    border-bottom: 1px dashed;
-  }
-
-  td {
-    border: none;
-    vertical-align: middle;
-    position: relative;
-    padding: 0.05rem;
-    padding-left: 60%;
-    padding-top: 10px;
-    padding-right: 10px;
-  }
-
-  td:before {
-    position: absolute;
-    left: 6px;
-    right: 6px;
-    width: 40%;
-    padding-right: 10px;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-
-  td:nth-of-type(1):before {
-    content: "Date";
-  }
-  td:nth-of-type(2):before {
-    content: "Doctor";
-  }
-  td:nth-of-type(3):before {
-    content: "Patient Name";
-  }
-  td:nth-of-type(4):before {
-    content: "Address";
-  }
-  td:nth-of-type(5):before {
-    content: "Need Insurance";
-  }
-  td:nth-of-type(6):before {
-    content: "Approved By Insurance";
-  }
-  td:nth-of-type(7):before {
-    content: "Additional Information";
-  }
-  /* td:nth-of-type(9):before {
-    content: "";
-  }
-  td:nth-of-type(10):before {
-    content: "";
-  }
-  td:nth-of-type(11):before {
-    content: "Doctor Specialty";
-  }
-  td:nth-of-type(12):before {
-    content: "Symptoms";
-  }
-  td:nth-of-type(13):before {
-    content: "";
-  } */
-}
 .add-new-btn {
   padding: 0;
-}
-
-input.login[type="text"],
-input.login[type="password"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-input[type="text"],
-input[type="password"],
-select,
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-input[type="time"],
-input[type="date"] {
-  width: 60%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-label {
-  display: inline-block;
-}
-
-input[type="submit"] {
-  background-color: #008cba;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: center;
-}
-
-input[type="submit"]:hover {
-  background-color: #008cba;
-}
-input[type="checkbox"],
-input:checked {
-  font-weight: bold;
-  /* background: #008cba; */
-  margin-left: 5px;
-  background-color: #008cba;
-  /* filter: invert(100%) hue-rotate(18deg) brightness(1.7); */
-
-  padding: 12px 20px;
-}
-input[type="checkbox"]:checked::after {
-  background: #2aa1c0;
-}
-
-input[type="checkbox"]:hover {
-  filter: brightness(90%);
-}
-
-.container {
-  padding: 20px;
 }
 
 .col-25 {
@@ -284,16 +65,154 @@ input[type="checkbox"]:hover {
   width: 75%;
   margin-top: 6px;
 }
+
 .col-50 {
+  margin: 0 auto;
   float: center;
   width: 50%;
-  margin: 0 auto;
   margin-top: 20px;
 }
 
-/* Clear floats after the columns */
+.container {
+  padding: 20px;
+}
+
+.bf-light {
+  background-color: transparent !important;
+}
+
+.additional-info {
+  text-align: left;
+}
+
+.hidden {
+  overflow: hidden;
+  padding: 20px;
+}
+
+.login-100 {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #bfced375;
+}
+
+.center-100 {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.right-100 {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+  margin-top: 20px;
+}
+
+input {
+  margin: auto;
+}
+
+label {
+  display: inline-block;
+}
+
+input.login[type=text],
+input.login[type=password] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-top: 10px;
+}
+
+input[type=text],
+input[type=password],
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+input[type=time],
+input[type=date] {
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #008cba;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: center;
+}
+input[type=submit]:hover {
+  background-color: #008cba;
+}
+
+input[type=checkbox],
+input:checked {
+  font-weight: bold;
+  margin-left: 5px;
+  background-color: #008cba;
+  padding: 12px 20px;
+}
+input[type=checkbox]:checked::after,
+input:checked:checked::after {
+  background-color: #008cba;
+}
+input[type=checkbox]:hover,
+input:checked:hover {
+  filter: brightness(90%);
+}
+
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+td, th {
+  padding: 6px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table thead th {
+  vertical-align: middle;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.bg-light {
+  background-color: transparent !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/*# sourceMappingURL=App.css.map */
