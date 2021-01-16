@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import svgs from "../services/svg";
 
 export default function Filter({ setFilter }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -13,10 +14,10 @@ export default function Filter({ setFilter }) {
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret>Filter</DropdownToggle>
+      <DropdownToggle caret>{svgs.filter}</DropdownToggle>
       <DropdownMenu>
         <DropdownItem onClick={() => setFilter("future")}>
-          Future Appointments
+          Next Appointments
         </DropdownItem>
         <DropdownItem onClick={() => setFilter("past_only")}>
           Archive

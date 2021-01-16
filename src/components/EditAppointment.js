@@ -22,7 +22,6 @@ const EditAppointment = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     let isValid = helpers.validate(newAppointment);
     if (isValid !== true) {
       alert(`${isValid}`);
@@ -34,7 +33,7 @@ const EditAppointment = ({
 
   return (
     <div>
-      <Button color="info" onClick={toggle}>
+      <Button className="edit-delete-button" color="info" onClick={toggle}>
         {buttonLabel}
       </Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
@@ -176,11 +175,8 @@ const EditAppointment = ({
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleSubmit}>
-            Save Changes
+            Save
           </Button>{" "}
-          <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
         </ModalFooter>
       </Modal>
     </div>

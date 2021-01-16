@@ -65,10 +65,8 @@ export default function Appointments({
     return array;
   };
   const displayFilter = (filter) => {
-    if (filter === "need_insurance")
-      return "Appointments that need insurance approval";
-    if (filter === "insurance_done")
-      return "Appointments that approved by insurance";
+    if (filter === "need_insurance") return "Need Insurance Approval";
+    if (filter === "insurance_done") return "Approved by Insurance";
     if (filter === "past_only") return "Archive Appointments";
     if (filter === "future") return "Next Appointments";
     if (filter === "all") return "All Appointments";
@@ -82,15 +80,16 @@ export default function Appointments({
 
   return (
     <div>
-      <div className="filter">
-        {useWindowDimensions().width > 760 ? (
-          <Filter sortingBy={sortingBy} setFilter={setFilter} />
-        ) : (
-          <Sort sortingBy={sortingBy} setFilter={setFilter} />
-        )}
+      <div>
+        <h1>{displayFilter(filter)}</h1>
+        <div className="filter">
+          {useWindowDimensions().width > 760 ? (
+            <Filter sortingBy={sortingBy} setFilter={setFilter} />
+          ) : (
+            <Sort sortingBy={sortingBy} setFilter={setFilter} />
+          )}
+        </div>
       </div>
-      <h1>{displayFilter(filter)}</h1>
-
       <div>
         <table className=" table-hover">
           <thead>

@@ -63,10 +63,20 @@ const validateDate = (date) => {
   let fiveYearsYear = new Date().getFullYear() - 5;
   return +date.split("-")[0] >= fiveYearsYear ? true : false;
 };
+const convertTime = (time) => {
+  let hour = time.split(":")[0];
+  let ampm = hour >= 12 ? "PM" : "AM";
+  if (hour > 12) hour = hour - 12;
+  if (hour === "00") hour = 12;
+  let minuets = time.split(":")[1];
+
+  return hour + ":" + minuets + " " + ampm;
+};
 
 let helpers = {
   sortBy: sortBy,
   validate: validate,
+  convertTime: convertTime,
 };
 
 export default helpers;

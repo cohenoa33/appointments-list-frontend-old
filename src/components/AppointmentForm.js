@@ -1,7 +1,14 @@
 import React from "react";
 import helpers from "../services/helpers";
 
-import { Button, ModalBody, Modal, ModalHeader, ModalFooter } from "reactstrap";
+import {
+  Button,
+  ButtonToggle,
+  ModalBody,
+  Modal,
+  ModalHeader,
+  ModalFooter,
+} from "reactstrap";
 
 class AppointmentForm extends React.Component {
   state = {
@@ -47,9 +54,9 @@ class AppointmentForm extends React.Component {
   render() {
     return (
       <>
-        <Button onClick={this.toggle} className="add-new-btn">
+        <ButtonToggle onClick={this.toggle} color="info" size="lg">
           {this.props.buttonLabel}
-        </Button>
+        </ButtonToggle>
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}

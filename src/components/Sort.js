@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import svgs from "../services/svg";
 
 export default function Sort({ sortingBy, setFilter }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function Sort({ sortingBy, setFilter }) {
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret>Sort & Filter</DropdownToggle>
+      <DropdownToggle caret>{svgs.filter}</DropdownToggle>
       <DropdownMenu>
         <DropdownItem header>Sort</DropdownItem>
         <DropdownItem onClick={() => sortingBy("date")}>Date</DropdownItem>
@@ -28,10 +29,10 @@ export default function Sort({ sortingBy, setFilter }) {
         <DropdownItem divider />
 
         <DropdownItem onClick={() => setFilter("future")}>
-          Future Appointments
+          Next Appointments
         </DropdownItem>
         <DropdownItem onClick={() => setFilter("past_only")}>
-          Archive
+          Archive Appointments
         </DropdownItem>
         <DropdownItem onClick={() => setFilter("need_insurance")}>
           Need Insurance Approval

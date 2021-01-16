@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
 const DeleteAppointment = ({
   buttonLabel,
@@ -13,25 +13,23 @@ const DeleteAppointment = ({
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>
+      <Button className="edit-delete-button" color="danger" onClick={toggle}>
         {buttonLabel}
       </Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
+        <ModalHeader toggle={toggle}>Delete Appointment</ModalHeader>
         <ModalBody>
           {appointment.patient}'s appointment for Dr. {appointment.doctor}
           on {appointment.date} at {appointment.time}.<br></br>
-          Are you sure you want to delete this appointment?
+          <p>Are you sure you want to delete this appointment?</p>
         </ModalBody>
         <ModalFooter>
           <Button
             color="danger"
             onClick={() => deleteAppointment(appointment.id)}
           >
-            Yes
+            Delete
           </Button>{" "}
-          <Button color="secondary" onClick={toggle}>
-            No
-          </Button>
         </ModalFooter>
       </Modal>
     </div>

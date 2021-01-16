@@ -2,6 +2,8 @@ import React from "react";
 import EditAppointment from "./EditAppointment";
 import DeleteAppointment from "./DeleteAppointment";
 import moment from "moment";
+import helpers from "../services/helpers";
+import svgs from "../services/svg";
 
 function Appointment({ appointment, deleteAppointment, updateAppointment }) {
   const specialty = (specialty) => {
@@ -17,14 +19,20 @@ function Appointment({ appointment, deleteAppointment, updateAppointment }) {
     <tr>
       <td>
         {moment(appointment.date).format("dddd, MMMM Do YYYY")} at{" "}
-        {appointment.time}
+        {helpers.convertTime(appointment.time)}
       </td>
       <td>
         {appointment.doctor}
         <br /> {specialty(appointment.specialty)}
       </td>
       <td>{appointment.patient}</td>
-      <td>{appointment.location}</td>
+      <td>
+        {appointment.location !== null ? (
+          appointment.location
+        ) : (
+          <p className="text-hidden">No</p>
+        )}
+      </td>
       <td>{appointment.need_insurance ? "Yes" : "No"}</td>
       <td>{appointment.insurance_approval ? "Yes" : "No"}</td>
       <td className="additional-info">
@@ -33,18 +41,20 @@ function Appointment({ appointment, deleteAppointment, updateAppointment }) {
 
         <br></br>
         {symptoms(appointment.symptoms)}
-        <EditAppointment
-          buttonLabel={"EDIT"}
-          className={"Modal"}
-          appointment={appointment}
-          updateAppointment={updateAppointment}
-        />
-        <DeleteAppointment
-          buttonLabel={"DELETE"}
-          className={"Modal"}
-          appointment={appointment}
-          deleteAppointment={deleteAppointment}
-        />
+        <div className="buttons">
+          <EditAppointment
+            buttonLabel={svgs.edit}
+            className={"Modal"}
+            appointment={appointment}
+            updateAppointment={updateAppointment}
+          />
+          <DeleteAppointment
+            buttonLabel={svgs.deleteIcon}
+            className={"Modal"}
+            appointment={appointment}
+            deleteAppointment={deleteAppointment}
+          />
+        </div>
       </td>
     </tr>
   );

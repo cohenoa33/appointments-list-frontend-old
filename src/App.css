@@ -1,7 +1,3 @@
-.filter {
-  float: right;
-}
-
 button.hidden-button {
   background: transparent;
   border: none;
@@ -10,6 +6,8 @@ button.hidden-button {
   outline: none;
   font-weight: bold;
   transition-duration: 0.4s;
+  text-align: left;
+  padding: 0;
 }
 
 button.hidden-button:hover,
@@ -25,15 +23,6 @@ button.hidden-button:hover,
 
 button:focus {
   outline: none;
-}
-
-.add-new-btn {
-  background-color: transparent;
-  border: none;
-  color: #2aa1c0;
-}
-.add-new-btn:hover {
-  text-decoration: underline;
 }
 
 .logout-button {
@@ -52,6 +41,17 @@ button:focus {
 
 .add-new-btn {
   padding: 0;
+}
+
+.btn-secondary {
+  color: #2aa1c0;
+  background-color: #ccc;
+  border: none;
+}
+
+.edit-delete-button {
+  padding: 0;
+  margin-right: 5px;
 }
 
 .col-25 {
@@ -77,19 +77,6 @@ button:focus {
   padding: 20px;
 }
 
-.bf-light {
-  background-color: transparent !important;
-}
-
-.additional-info {
-  text-align: left;
-}
-
-.hidden {
-  overflow: hidden;
-  padding: 20px;
-}
-
 .login-100 {
   display: inline-block;
   text-align: center;
@@ -111,6 +98,18 @@ button:focus {
   text-align: right;
   width: 100%;
   margin-top: 20px;
+}
+
+.hidden {
+  overflow: hidden;
+  padding: 20px;
+}
+
+.buttons {
+  display: inline-flex;
+  text-align: center;
+  width: 100%;
+  margin-top: 0;
 }
 
 input {
@@ -189,6 +188,7 @@ input:checked:hover {
 table {
   width: 100%;
   border-collapse: collapse;
+  border: 1px solid;
 }
 
 th {
@@ -199,7 +199,10 @@ th {
 td, th {
   padding: 6px;
   vertical-align: middle;
-  text-align: center;
+}
+
+tr {
+  border: 1px solid #dee2e6;
 }
 
 .table thead th {
@@ -207,10 +210,167 @@ td, th {
   border-bottom: 2px solid #dee2e6;
 }
 
+.text-hidden {
+  color: transparent;
+}
+
 .bg-light {
   background-color: transparent !important;
 }
 
+.filter {
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 760px) {
+  table {
+    display: block;
+    border: none;
+    text-align: left;
+  }
+
+  thead {
+    display: block;
+    border: none;
+    text-align: left;
+  }
+  thead tr {
+    position: absolute;
+    color: transparent;
+    padding: 0;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  td {
+    display: block;
+    border: none;
+    text-align: left;
+    border: none;
+    vertical-align: middle;
+    position: relative;
+    padding: 0.05rem;
+    padding-left: 60%;
+    padding-top: 10px;
+    padding-right: 10px;
+  }
+  td:before {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    width: 40%;
+    padding-right: 10px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  td:nth-of-type(1):before {
+    content: "Date";
+  }
+  td:nth-of-type(2):before {
+    content: "Doctor";
+  }
+  td:nth-of-type(3):before {
+    content: "Patient Name";
+  }
+  td:nth-of-type(4):before {
+    content: "Address";
+  }
+  td:nth-of-type(5):before {
+    content: "Need Insurance";
+  }
+  td:nth-of-type(6):before {
+    content: "Approved By Insurance";
+  }
+  td:nth-of-type(7):before {
+    content: "Additional Information";
+  }
+
+  tr {
+    display: block;
+    border: none;
+    text-align: left;
+    vertical-align: end;
+    border: none;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px dashed;
+  }
+}
+@media (min-device-width: 768px) and (max-device-width: 1024px) {
+  table {
+    display: block;
+    border: none;
+    text-align: left;
+  }
+
+  thead {
+    display: block;
+    border: none;
+    text-align: left;
+  }
+  thead tr {
+    position: absolute;
+    color: transparent;
+    padding: 0;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  td {
+    display: block;
+    border: none;
+    text-align: left;
+    border: none;
+    vertical-align: middle;
+    position: relative;
+    padding: 0.05rem;
+    padding-left: 60%;
+    padding-top: 10px;
+    padding-right: 10px;
+  }
+  td:before {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    width: 40%;
+    padding-right: 10px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  td:nth-of-type(1):before {
+    content: "Date";
+  }
+  td:nth-of-type(2):before {
+    content: "Doctor";
+  }
+  td:nth-of-type(3):before {
+    content: "Patient Name";
+  }
+  td:nth-of-type(4):before {
+    content: "Address";
+  }
+  td:nth-of-type(5):before {
+    content: "Need Insurance";
+  }
+  td:nth-of-type(6):before {
+    content: "Approved By Insurance";
+  }
+  td:nth-of-type(7):before {
+    content: "Additional Information";
+  }
+
+  tr {
+    display: block;
+    border: none;
+    text-align: left;
+    vertical-align: end;
+    border: none;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px dashed;
+  }
+}
 * {
   box-sizing: border-box;
 }

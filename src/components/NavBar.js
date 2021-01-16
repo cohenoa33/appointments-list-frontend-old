@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Navbar, Nav, NavItem } from "reactstrap";
+import { ButtonToggle, Navbar, Nav, NavItem } from "reactstrap";
 import AppointmentForm from "./AppointmentForm";
 
 const NavBar = ({ user, logout, addAppointment }) => {
@@ -19,9 +19,9 @@ const NavBar = ({ user, logout, addAppointment }) => {
         <Nav className="mr-auto" navbar>
           <NavItem> {renderAppointmentForm(user.id, addAppointment)}</NavItem>
         </Nav>
-        <Button color="info" onClick={logout}>
+        <ButtonToggle color="light" onClick={logout}>
           Logout
-        </Button>
+        </ButtonToggle>
       </Navbar>
     </div>
   );

@@ -1,9 +1,9 @@
-.filter
-    float: right
 
 button.hidden-button
     +hidden-button()
     transition-duration: 0.4s
+    text-align: left
+    padding: 0
 
 button.hidden-button:hover,
 .sorting
@@ -12,13 +12,6 @@ button.hidden-button:hover,
 
 button:focus
     outline: none
-
-.add-new-btn
-    background-color: transparent
-    border: none
-    color: $primary
-    &:hover
-        text-decoration: underline
 
 .logout-button
     color: #fff
@@ -29,3 +22,11 @@ button:focus
 
 .add-new-btn
     padding: 0
+
+.btn-secondary
+    color: $primary
+    background-color: $solid-border
+    border: none
+.edit-delete-button
+    padding: 0
+    margin-right: 5px
